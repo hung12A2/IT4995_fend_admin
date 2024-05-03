@@ -2,8 +2,12 @@
 "use client";
 import { useForm, FormProvider } from "react-hook-form";
 import { EmailField, PasswordField } from "../base/fieldBase";
+import { useRouter } from "next/navigation";
 
 export const Login = () => {
+
+  const router = useRouter();
+
   const formContext = useForm({});
 
   const { handleSubmit } = formContext;
@@ -70,7 +74,10 @@ export const Login = () => {
           <a
             className="no-underline border-b border-blue text-blue-500 font-semibold hover:text-blue-600"
             href="#"
-            onClick={() => {}}
+            onClick={(e) => {
+              e.preventDefault();
+              router.push("/auth/register");
+            }}
           >
             Create Account
           </a>

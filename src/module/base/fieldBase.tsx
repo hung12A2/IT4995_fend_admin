@@ -104,6 +104,7 @@ export const Field = ({
                 type={type}
                 disabled={disabled}
                 onChange={field.onChange}
+                placeholder= {placeholder}
               />
             </FormControl>
             <span className="text-xs text-red-500">
