@@ -1,8 +1,9 @@
 import { useToast } from "@/components/ui/use-toast";
-import { authProvider } from "@/provider/authProvider";
 import { dataProvider } from "@/provider/dataProvider";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
+  Button,
   Create,
   Datagrid,
   DateField,
@@ -15,7 +16,7 @@ import {
   TextField,
   TextInput,
 } from "react-admin";
-import { date } from "zod";
+
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -41,7 +42,7 @@ const postFilters = [
 
 export const ListAreas = (props: any) => {
   return (
-    <List>
+    <List >
       <FilterForm filters={postFilters}></FilterForm>
       <Datagrid>
         <TextField source="id" />
@@ -161,11 +162,27 @@ export const CreateAreas = (props: any) => {
 export const EditArea = (props: any) => {
   const [province, setProvince] = useState([]);
   const [district, setDistrict] = useState([]);
+  const [areaData, setAreaData] = useState<any>({});
   const [selectedProvince, setSelectedProvince] = useState("");
+  const params = useParams();
+  const { id } = params;
+
   const { toast } = useToast();
 
   useEffect(() => {
     async function fetchData() {
+      const data = await dataProvider.getOne("areas", { id });
+      let dataReturn = data.data;
+      dataReturn = {
+        ...dataReturn,
+        province: `${dataReturn.provinceName}-${dataReturn.provinceId}`,
+        district: `${dataReturn.districtName}-${dataReturn.districtId}`,
+      };
+
+      setAreaData(dataReturn);
+      setSelectedProvince(dataReturn.province);
+    }
+    async function fetchData2() {
       const data = await (
         await fetch(`http://localhost:7070/location/province`, {
           method: "GET",
@@ -185,8 +202,10 @@ export const EditArea = (props: any) => {
       setProvince(returnData);
     }
 
+    fetchData2();
+
     fetchData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     async function fetchData() {
@@ -217,48 +236,49 @@ export const EditArea = (props: any) => {
   }, [selectedProvince]);
 
   return (
-    <Edit {...props}>
-      <SimpleForm
-        defaultValues={{name:''}}
-        onSubmit={async (data) => {
-          try {
-            const dataReturn: any = (
-              await dataProvider.create("areas", { data })
-            ).data;
-            console.log(dataReturn);
-            if (dataReturn.code == 200) {
-              toast({
-                title: "Edit success",
-                description: `Update success at ${new Date().toLocaleString()}.`,
-              });
-            }
-          } catch (error) {
+    <SimpleForm
+      defaultValues={areaData}
+      onSubmit={async (data) => {
+        try {
+          data.id = id;
+          const dataReturn: any = (
+            await dataProvider.update("areas", { ...data })
+          ).data;
+          if (dataReturn.code == 200) {
             toast({
-              title: "Edit failed",
-              description: `Updated failed at ${new Date().toLocaleString()}.`,
+              title: "Edit success",
+              description: `Update success at ${new Date().toLocaleString()}.`,
             });
           }
-        }}
-      >
-        <div className="grid grid-cols-3 w-full gap-x-4 px-3">
-          <TextInput source="name" />
-          <SelectInput
-            source="province"
-            choices={province}
-            optionText="province"
-            optionValue="proviceWithId"
-            onChange={(e) => {
-              setSelectedProvince(e.target.value);
-            }}
-          ></SelectInput>
-          <SelectInput
-            source="district"
-            choices={district}
-            optionText="district"
-            optionValue="districtWithId"
-          ></SelectInput>
-        </div>
-      </SimpleForm>
-    </Edit>
+        } catch (error) {
+          toast({
+            title: "Edit failed",
+            description: `Updated failed at ${new Date().toLocaleString()}.`,
+          });
+        }
+      }}
+    >
+      <div className="grid grid-cols-3 w-full gap-x-4 px-3">
+        <TextInput source="id" disabled={true} />
+
+        <TextInput source="name" />
+        <SelectInput
+          source="province"
+          choices={province}
+          optionText="province"
+          optionValue="proviceWithId"
+          onChange={(e) => {
+            setSelectedProvince(e.target.value);
+          }}
+        ></SelectInput>
+        <SelectInput
+          source="district"
+          choices={district}
+          optionText="district"
+          optionValue="districtWithId"
+        ></SelectInput>
+      </div>
+      <Button></Button>
+    </SimpleForm>
   );
 };

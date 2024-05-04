@@ -5,6 +5,7 @@ import { authProvider } from "@/provider/authProvider";
 import { dataProvider } from "@/provider/dataProvider";
 import { ListAreas, CreateAreas, EditArea } from "@/module/Areas/Areas";
 
+
 export default function Home() {
   return (
     <Admin
@@ -12,7 +13,7 @@ export default function Home() {
       authProvider={authProvider}
       dataProvider={dataProvider}
     >
-      <Resource name="areas" list={ListAreas} create={CreateAreas} edit={EditArea}/>
+      <Resource name="areas"  list={ListAreas} create={CreateAreas} edit={EditArea} />
     </Admin>
   );
 }

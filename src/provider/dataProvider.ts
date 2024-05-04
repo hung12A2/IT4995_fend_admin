@@ -59,9 +59,10 @@ export const dataProvider = {
   },
 
   update: async (resource: string, params: any) => {
+    const {id} = params;
     console.log("update");
     const apiUrl = `${BASE_URL}`;
-    let url = `${apiUrl}/${resource}`;
+    let url = `${apiUrl}/${resource}/${id}`;
     let options = getOptions();
     options = {
       ...options,
@@ -114,18 +115,6 @@ export const dataProvider = {
     const data = {
       data: json,
     };
-
-    if (resource == "areas") {
-      const dataAreas = {
-        data: {
-          ...json,
-          province: `${json.provinceName}-${json.provinceId}`,
-          district: `${json.districtName}-${json.districtId}`,
-        },
-      };
-
-      return dataAreas;
-    }
 
     return data;
   },
