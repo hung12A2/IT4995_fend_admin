@@ -129,8 +129,8 @@ export const EmailField: FC<TextFieldProps> = (props) => {
       {...props}
       type="email"
       defaultValue=""
-      regex={/\S+@\S+\.com$/}
-      message="email must have @ and .com"
+      // regex={/\S+@\S+\.com$/}
+      // message="email must have @ and .com"
     />
   );
 };
@@ -141,8 +141,8 @@ export const PasswordField: FC<PasswordFieldProps> = (props) => {
       {...props}
       type="password"
       defaultValue=""
-      regex={/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/}
-      message="password must contain at least 6 characters, one uppercase letter and one lowercase letter"
+      // regex={/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/}
+      // message="password must contain at least 6 characters, one uppercase letter and one lowercase letter"
     />
   );
 };

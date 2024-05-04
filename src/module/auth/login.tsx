@@ -3,17 +3,20 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { EmailField, PasswordField } from "../base/fieldBase";
 import { useRouter } from "next/navigation";
+import { useLogin } from "react-admin";
 
 export const Login = () => {
-
+  const login = useLogin();
   const router = useRouter();
 
   const formContext = useForm({});
 
   const { handleSubmit } = formContext;
 
-  const onSubmit = (data: object) => {
-    console.log(data);
+  const onSubmit = (data: any) => {
+    const { email, password } = data;
+    console.log ("email", email, "password", password)
+    login({ email, password }).catch((err) => console.log(err));
   };
 
   return (
