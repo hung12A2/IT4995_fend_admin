@@ -77,7 +77,20 @@ export const dataProvider = {
 
   getList: async (resource: string, params: any) => {
     console.log("getList");
-    const { filter } = params;
+    const { filter, pagination, sort } = params;
+    
+    if (pagination) {
+      const { page, perPage } = pagination;
+      const limit = perPage;
+      const skip = (page - 1) * perPage;
+      filter.limit = limit;
+      filter.skip = skip;
+    }
+
+    if (sort) {
+      const { field, order } = sort;
+      filter.order = `${field} ${order}`;
+    }
     const { where } = filter;
 
     const apiUrl = `${BASE_URL}`;
@@ -90,11 +103,14 @@ export const dataProvider = {
     const options = getOptions();
     const res = await fetchUtils.fetchJson(url, options);
 
+    const urlCount = `${apiUrl}/${resource}/count`;
+    const resCount = await fetchUtils.fetchJson(urlCount, options);
+
     const { json = {} } = res;
 
     const data = {
       data: json,
-      total: json.length,
+      total: resCount.json.count,
     };
 
     return data;

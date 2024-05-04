@@ -36,17 +36,17 @@ const checkAuth = (params: any) => {
 };
 
 const getPermissions = (params: any) => {
-  const auth: any = localStorage.getItem("user");
+  let user: any = localStorage.getItem("user");
+  user = JSON.parse(user);
 
-  const { permissions } = auth;
+  const { permissions } = user;
   return Promise.resolve({ permissions });
 };
 
-
 const getIdentity = () => {
-  const user: any = localStorage.getItem("user");
-  delete user.password;
-  const identity = { ...user };
+  let user: any = localStorage.getItem("user");
+  user = JSON.parse(user);
+  const identity = user;
   return Promise.resolve(identity);
 };
 
