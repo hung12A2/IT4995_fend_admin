@@ -1,10 +1,13 @@
 "use client";
-import { Admin, Resource, useGetIdentity } from "react-admin";
+import { Admin, CustomRoutes, Resource, useGetIdentity } from "react-admin";
 import { Login } from "@/module/auth/login";
 import { authProvider } from "@/provider/authProvider";
 import { dataProvider } from "@/provider/dataProvider";
 import { ListAreas, CreateAreas, EditArea } from "@/module/Areas/Areas";
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import { Route } from "react-router-dom";
+import { MainLayout } from "@/module/layout/Layout";
+import CameraRearRoundedIcon from '@mui/icons-material/CameraRearRounded';
+import { Profile } from "@/module/pages/Profile";
 
 export default function Home() {
 
@@ -14,10 +17,15 @@ export default function Home() {
       loginPage={Login}
       authProvider={authProvider}
       dataProvider={dataProvider}
+      layout={MainLayout}
     >
-      <Resource name="areas"  list={ListAreas} create={CreateAreas} edit={EditArea} icon={DashboardIcon}  options={{
+      <Resource name="areas"  list={ListAreas} create={CreateAreas} edit={EditArea} icon={CameraRearRoundedIcon}  options={{
         label: "Areas",
       }}/>
+
+      <CustomRoutes>
+        <Route path="/profile" element={<Profile />} />
+      </CustomRoutes>
     </Admin>
   );
 }

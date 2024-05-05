@@ -4,8 +4,10 @@ import { useForm, FormProvider } from "react-hook-form";
 import { EmailField, PasswordField } from "../base/fieldBase";
 import { useRouter } from "next/navigation";
 import { useLogin } from "react-admin";
+import { useToast } from "@/components/ui/use-toast";
 
 export const Login = () => {
+  const { toast } = useToast();
   const login = useLogin();
   const router = useRouter();
 
@@ -15,8 +17,21 @@ export const Login = () => {
 
   const onSubmit = (data: any) => {
     const { email, password } = data;
-    console.log ("email", email, "password", password)
-    login({ email, password }).catch((err) => console.log(err));
+    console.log("email", email, "password", password);
+    login({ email, password })
+      .then((res) => {
+        toast({
+          title: "Login success",
+        });
+      })
+      .catch((err) => {
+        toast({
+          title: "Login failed",
+          description: `${err}`,
+          variant: "destructive",
+        });
+        console.log("err", err);
+      });
   };
 
   return (
