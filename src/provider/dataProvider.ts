@@ -6,7 +6,7 @@ import { get } from "http";
 const getOptions = () => {
   let options: any = {};
   if (!options.headers) {
-    options.headers = new Headers({ Accept: "application/json" });
+    options.headers = new Headers({ Accept: 'multipart/form-data' });
   }
   const data: any = localStorage.getItem("token");
   const { token } = JSON.parse(data);

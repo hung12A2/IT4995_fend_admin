@@ -45,7 +45,10 @@ const getPermissions = (params: any) => {
 
 const getIdentity = () => {
   let user: any = localStorage.getItem("user");
+  let token: any = localStorage.getItem("token");
   user = JSON.parse(user);
+  token = JSON.parse(token);
+  user.token = token.token;
   const identity = user;
   return Promise.resolve(identity);
 };
