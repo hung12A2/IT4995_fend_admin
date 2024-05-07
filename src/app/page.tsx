@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import { MainLayout } from "@/module/layout/Layout";
 import CameraRearRoundedIcon from '@mui/icons-material/CameraRearRounded';
 import { Profile } from "@/module/pages/Profile";
+import { ListUser } from "@/module/Users/users";
 
 export default function Home() {
 
@@ -21,6 +22,9 @@ export default function Home() {
     >
       <Resource name="areas"  list={ListAreas} create={CreateAreas} edit={EditArea} icon={CameraRearRoundedIcon}  options={{
         label: "Areas",
+      }}/>
+        <Resource name="getAllUser"  list={ListUser}  options={{
+        label: "Users",
       }}/>
 
       <CustomRoutes>
