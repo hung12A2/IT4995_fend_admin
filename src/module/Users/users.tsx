@@ -29,9 +29,9 @@ import { useToast } from "@/components/ui/use-toast";
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
   <TextInput
-    key={"fullname"}
+    key={"fullName"}
     label="Full Name"
-    source="where.fullname.like"
+    source="where.fullName.like"
     alwaysOn={true}
   />,
   <TextInput
@@ -40,13 +40,19 @@ const postFilters = [
     source="where.email.like"
     alwaysOn={true}
   />,
+
+  <TextInput
+    key={"phoneNumber"}
+    label="phoneNumber"
+    source="where.phoneNumber.like"
+    alwaysOn={true}
+  />,
 ];
 
 export const ListUser = (props: any) => {
   const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
-  console.log(data);
   return (
     <List>
       <FilterForm filters={postFilters}></FilterForm>

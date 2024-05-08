@@ -137,10 +137,16 @@ export const dataProvider = {
 
   getMany: async (resource: string, params: any) => {
     console.log("getMany");
-    const { filter } = params;
-    const { where } = filter;
+    console.log (resource, params)
+    const { ids } = params;
 
     const apiUrl = `${BASE_URL}`;
+
+    const filter = {
+      where: {
+        id: {inq: ids}
+      }
+    }
 
     const query = {
       filter: JSON.stringify(filter),
