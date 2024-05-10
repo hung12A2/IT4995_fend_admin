@@ -66,8 +66,7 @@ export const ListUser = (props: any) => {
           className="w-1/6"
           label="Avatar"
           render={(record: any) => {
-            const { avatar } = record;
-            const { url } = avatar;
+            const url = record?.avatar?.url
             // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
             if (url)
               return (

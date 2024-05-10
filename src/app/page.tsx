@@ -10,7 +10,12 @@ import CameraRearRoundedIcon from "@mui/icons-material/CameraRearRounded";
 import { Profile } from "@/module/pages/Profile";
 import { ListUser } from "@/module/Users/users";
 import { ListStores, ShowStores } from "@/module/Stores/stores";
-import { ListRequestShops, ShowRequestShopsDetails } from "@/module/ReqCreateShops/RequestCreateShops";
+import {
+  ListRequestShops,
+  ShowRequestShopsDetails,
+} from "@/module/ReqCreateShops/RequestCreateShops";
+import { ListKiots, ShowKiot } from "@/module/Kiots/kiots";
+import { ListEmployee, ShowEmployee } from "@/module/Employees/Employees";
 
 export default function Home() {
   return (
@@ -53,6 +58,24 @@ export default function Home() {
         edit={ShowRequestShopsDetails}
         options={{
           label: "Request create",
+        }}
+      />
+
+      <Resource
+        name="kiots"
+        list={ListKiots}
+        edit={ShowKiot}
+        options={{
+          label: "Kiots",
+        }}
+      />
+
+      <Resource
+        name="employees"
+        list={ListEmployee}
+        edit={ShowEmployee}
+        options={{
+          label: "Employees",
         }}
       />
 
