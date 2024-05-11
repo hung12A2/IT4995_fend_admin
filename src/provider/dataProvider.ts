@@ -6,7 +6,7 @@ import { get } from "http";
 const getOptions = () => {
   let options: any = {};
   if (!options.headers) {
-    options.headers = new Headers({ Accept: 'multipart/form-data' });
+    options.headers = new Headers({ Accept: "multipart/form-data" });
   }
   const data: any = localStorage.getItem("token");
   const { token } = JSON.parse(data);
@@ -59,7 +59,7 @@ export const dataProvider = {
   },
 
   update: async (resource: string, params: any) => {
-    const {id} = params;
+    const { id } = params;
     console.log("update");
     const apiUrl = `${BASE_URL}`;
     let url = `${apiUrl}/${resource}/${id}`;
@@ -72,13 +72,16 @@ export const dataProvider = {
 
     const res = await fetchUtils.fetchJson(url, options);
     let { json: data } = res;
-    return { data };
+    console.log({ data });
+    if (data.data) {
+      return { data: data.data };
+    } else return { data: data };
   },
 
   getList: async (resource: string, params: any) => {
     console.log("getList");
     const { filter, pagination, sort } = params;
-    
+
     if (pagination) {
       const { page, perPage } = pagination;
       const limit = perPage;
@@ -137,16 +140,16 @@ export const dataProvider = {
 
   getMany: async (resource: string, params: any) => {
     console.log("getMany");
-    console.log (resource, params)
+    console.log(resource, params);
     const { ids } = params;
 
     const apiUrl = `${BASE_URL}`;
 
     const filter = {
       where: {
-        id: {inq: ids}
-      }
-    }
+        id: { inq: ids },
+      },
+    };
 
     const query = {
       filter: JSON.stringify(filter),

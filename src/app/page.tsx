@@ -16,6 +16,13 @@ import {
 } from "@/module/ReqCreateShops/RequestCreateShops";
 import { ListKiots, ShowKiot } from "@/module/Kiots/kiots";
 import { ListEmployee, ShowEmployee } from "@/module/Employees/Employees";
+import { ListAdmin, CreateAdmin, EditAdmin } from "@/module/Admin/admin";
+import {
+  CreateCategories,
+  EditCategories,
+  ListCategories,
+} from "@/module/Categories/categories";
+import { ListRequestProducts } from "@/module/CreateProducts/requestCreateProducts";
 
 export default function Home() {
   return (
@@ -78,6 +85,25 @@ export default function Home() {
           label: "Employees",
         }}
       />
+
+      <Resource
+        name="admins"
+        list={ListAdmin}
+        create={CreateAdmin}
+        edit={EditAdmin}
+      />
+
+      <Resource
+        name="categories"
+        list={ListCategories}
+        create={CreateCategories}
+        edit={EditCategories}
+        options={{
+          label: "Categories",
+        }}
+      />
+
+      <Resource name="request-create-products" list={ListRequestProducts} />
 
       <CustomRoutes>
         <Route path="/profile" element={<Profile />} />

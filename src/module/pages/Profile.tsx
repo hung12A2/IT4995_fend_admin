@@ -139,11 +139,19 @@ export const Profile = () => {
             <div className="flex flex-col items-center justify-center">
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex justify-center w-1/2 mt-4">
-                  <img
-                    src={user.avatar.url}
-                    alt="avatar"
-                    className="aspect-[1] rounded-lg hover:brightness-110 transition duration-500 hover:cursor-grab"
-                  />
+                  {user?.avatar?.url ? (
+                    <img
+                      src={user?.avatar?.url}
+                      alt="avatar"
+                      className="aspect-[1] rounded-lg hover:brightness-110 transition duration-500 hover:cursor-grab"
+                    />
+                  ) : (
+                    <img
+                      src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTy-6oqxazyyxQwrNeitM4NDATAlVycYmNjqc4H37cmA&s`}
+                      alt="avatar"
+                      className="aspect-[1] rounded-lg hover:brightness-110 transition duration-500 hover:cursor-grab"
+                    />
+                  )}
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem className="hover:bg-gray-100 hover:cursor-grab">
@@ -266,12 +274,12 @@ export const Profile = () => {
         <Form
           className="grid grid-cols-1 px-4 mt-6 gap-y-3"
           defaultValues={{
-            id: `${user.id}`,
-            email: `${user.email}`,
-            role: `${user.role}`,
-            status: `${user.status}`,
-            createdAt: `${user.createdAt}`,
-            updatedAt: `${user.updatedAt}`,
+            id: `${user?.id}`,
+            email: `${user?.email}`,
+            role: `${user?.role}`,
+            status: `${user?.status}`,
+            createdAt: `${user?.createdAt}`,
+            updatedAt: `${user?.updatedAt}`,
           }}
         >
           <TextInput disabled={true} source="id"></TextInput>

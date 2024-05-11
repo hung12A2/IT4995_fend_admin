@@ -179,7 +179,7 @@ export const EditArea = (props: any) => {
         district: `${dataReturn.districtName}-${dataReturn.districtId}`,
       };
 
-      setAreaData(dataReturn);
+      setAreaData({...dataReturn});
       setSelectedProvince(dataReturn.province);
     }
     async function fetchData2() {
@@ -239,12 +239,22 @@ export const EditArea = (props: any) => {
     <SimpleForm
       defaultValues={areaData}
       onSubmit={async (data) => {
+        
         try {
           data.id = id;
+          data.provinceName = data.province.split("-")[0];
+          data.provinceId = data.province.split("-")[1];
+          data.districtName = data.district.split("-")[0];
+          data.districtId = data.district.split("-")[1];
+          
+          data= {
+            data,
+            id: data.id
+          }
           const dataReturn: any = (
             await dataProvider.update("areas", { ...data })
           ).data;
-          if (dataReturn.code == 200) {
+          if (dataReturn) {
             toast({
               title: "Edit success",
               description: `Update success at ${new Date().toLocaleString()}.`,
