@@ -171,13 +171,19 @@ export const dataProvider = {
 
   getManyReference: async (resource: string, params: any) => {
     console.log("getManyReference");
-    const { filter } = params;
-    const { where } = filter;
+    console.log(`resource`,resource);
+    console.log(`params`, params);
+
+    const filterReturn = {
+      where: {
+        [params.target]: params.id,
+      }
+    }
 
     const apiUrl = `${BASE_URL}`;
 
     const query = {
-      filter: JSON.stringify(filter),
+      filter: JSON.stringify(filterReturn),
     };
 
     const url = `${apiUrl}/${resource}?${stringify(query)}`;

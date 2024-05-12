@@ -22,7 +22,14 @@ import {
   EditCategories,
   ListCategories,
 } from "@/module/Categories/categories";
-import { ListRequestProducts } from "@/module/CreateProducts/requestCreateProducts";
+import {
+  ListRequestProducts,
+  ShowRequest,
+} from "@/module/CreateProducts/requestCreateProducts";
+import { ListProducts, ShowProducts } from "@/module/Products/Products";
+import { ListOrder, ShowOrder } from "@/module/Orders/orders";
+import { ListOrdersKiot, ShowOrdersKiot } from "@/module/OrdersKiot/ordersKiot";
+import { ListUserTrangsaction } from "@/module/UserTransaction/userTransaction";
 
 export default function Home() {
   return (
@@ -103,7 +110,34 @@ export default function Home() {
         }}
       />
 
-      <Resource name="request-create-products" list={ListRequestProducts} />
+      <Resource
+        name="products"
+        list={ListProducts}
+        edit={ShowProducts}
+        options={{ label: "Products" }}
+      />
+
+      <Resource
+        name="request-create-products"
+        list={ListRequestProducts}
+        edit={ShowRequest}
+      />
+
+      <Resource
+        name="ordersAdmin"
+        list={ListOrder}
+        edit={ShowOrder}
+        options={{ label: "Orders" }}
+      />
+
+      <Resource
+        name="ordersKiotAdmin"
+        list={ListOrdersKiot}
+        edit={ShowOrdersKiot}
+        options={{ label: "OrdersKiot" }}
+      />
+
+      <Resource name="transactions"  list={ListUserTrangsaction} options={{label: "User transaction"}}/> 
 
       <CustomRoutes>
         <Route path="/profile" element={<Profile />} />

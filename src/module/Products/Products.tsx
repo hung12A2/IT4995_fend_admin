@@ -67,7 +67,7 @@ const postFilters = [
   />,
 ];
 
-export const ListRequestProducts = (props: any) => {
+export const ListProducts = (props: any) => {
   const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
@@ -83,11 +83,11 @@ export const ListRequestProducts = (props: any) => {
         <FunctionField
           source="status"
           render={(record: any) => {
-            if (record.status == "accepted") {
+            if (record.status == "active") {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-green-400"></div>
-                  <div>Accepted</div>
+                  <div>active</div>
                 </div>
               );
             } else if (record.status == "pending") {
@@ -101,7 +101,7 @@ export const ListRequestProducts = (props: any) => {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-red-400"></div>
-                  <div>Rejected</div>
+                  <div>banned</div>
                 </div>
               );
             }
@@ -112,99 +112,99 @@ export const ListRequestProducts = (props: any) => {
         <FunctionField
           render={(record: any) => {
             const { id, status } = record;
-            if (status === "pending") {
+            if (status === "active") {
               return (
-                <div className=" flex flex-col gap-y-4">
-                  <AlertDialog>
-                    <AlertDialogTrigger>
-                      <div className="bg-green-300 hover:bg-green-400 hover:cursor-grab px-4 py-2 rounded-md">
-                        Accepted
-                      </div>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogDescription>
-                          Are you sure you want accepted this request ?
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={async () => {
-                            const dataFetch = await axios
-                              .post(
-                                `${BASE_URL}request-create-products/accepted/${id}`,
-                                {},
-                                {
-                                  headers: {
-                                    Authorization: `Bearer ${data?.token}`,
-                                  },
-                                }
-                              )
-                              .then((res) => res.data)
-                              .catch((e) => console.log(e));
-                            console.log(dataFetch);
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
+                      Ban
+                    </div>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogDescription>
+                        Are you sure you want ban this user ?
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={async () => {
+                          const dataFetch = await axios
+                            .post(
+                              `${BASE_URL}products/banned/${id}`,
+                              {},
+                              {
+                                headers: {
+                                  Authorization: `Bearer ${data?.token}`,
+                                },
+                              }
+                            )
+                            .then((res) => res.data)
+                            .catch((e) => console.log(e));
 
-                            if (dataFetch)
-                              toast({
-                                title: "Accepted success",
-                              });
+                            console.log(dataFetch)
+                          if (dataFetch.code == 200)
+                            toast({
+                              title: "Ban success",
+                            });
 
-                            refresh();
-                          }}
-                        >
-                          YES
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                  <AlertDialog>
-                    <AlertDialogTrigger>
-                      <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                        Rejected
-                      </div>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogDescription>
-                          Are you sure you want reject this request ?
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={async () => {
-                            const dataFetch = await axios
-                              .post(
-                                `${BASE_URL}request-create-products/rejected/${id}`,
-                                {},
-                                {
-                                  headers: {
-                                    Authorization: `Bearer ${data?.token}`,
-                                  },
-                                }
-                              )
-                              .then((res) => res.data)
-                              .catch((e) => console.log(e));
-                            console.log(dataFetch);
-
-                            if (dataFetch)
-                              toast({
-                                title: "Reject success",
-                              });
-
-                            refresh();
-                          }}
-                        >
-                          YES
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
+                          refresh();
+                        }}
+                      >
+                        YES
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               );
             } else {
-              return <></>;
+              return (
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
+                      UnBan
+                    </div>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogDescription>
+                        Are you sure you want unban this user ?
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={async () => {
+                          const dataFetch = await axios
+                            .post(
+                              `${BASE_URL}products/unbanned/${id}`,
+                              {},
+                              {
+                                headers: {
+                                  Authorization: `Bearer ${data?.token}`,
+                                },
+                              }
+                            )
+                            .then((res) => res.data)
+                            .catch((e) => console.log(e));
+
+                            console.log (dataFetch)
+
+                          if (dataFetch.code == 200)
+                            toast({
+                              title: "UnBun success",
+                            });
+
+                          refresh();
+                        }}
+                      >
+                        YES
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              );
             }
           }}
         />
@@ -213,7 +213,7 @@ export const ListRequestProducts = (props: any) => {
   );
 };
 
-export const ShowRequest = (props: any) => {
+export const ShowProducts = (props: any) => {
   return (
     <Show>
       <TabbedShowLayout>

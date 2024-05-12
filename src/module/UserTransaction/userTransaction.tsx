@@ -57,7 +57,7 @@ const postFilters = [
   />,
 ];
 
-export const ListKiots = (props: any) => {
+export const ListUserTrangsaction = (props: any) => {
   const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
@@ -66,142 +66,17 @@ export const ListKiots = (props: any) => {
       <FilterForm filters={postFilters}></FilterForm>
       <Datagrid bulkActionButtons={false}>
         <TextField source="id" />
-        <TextField source="name" />
-        <ReferenceField
-          label="Owner User"
-          source="idOfUser"
-          reference="getAllUser"
-        >
-          <TextField source="fullName" />
-        </ReferenceField>
-        <EmailField source="email" />
-        <TextField source="phoneNumber" />
-        <FunctionField
-          source="status"
-          render={(record: any) => {
-            const { status } = record;
-            if (status === "active")
-              return (
-                <div className="flex flex-row items-center">
-                  <div className="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
-                  <div>Active</div>
-                </div>
-              );
-            else {
-              return (
-                <div className="flex flex-row items-center">
-                  <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                  <div>Banned</div>
-                </div>
-              );
-            }
-          }}
-        />
+        <TextField source="idOfUser" />
+        <TextField source="idOfOrder" />
+        <TextField source="amountMoney" />
         <DateField source="createdAt" showTime />
-        <FunctionField
-          render={(record: any) => {
-            const { id, status } = record;
-            if (status === "active") {
-              return (
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      Ban
-                    </div>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogDescription>
-                        Are you sure you want ban this Kiot ?
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={async () => {
-                          const dataFetch = await axios
-                            .post(
-                              `${BASE_URL}kiots/banned/${id}`,
-                              {},
-                              {
-                                headers: {
-                                  Authorization: `Bearer ${data?.token}`,
-                                },
-                              }
-                            )
-                            .then((res) => res)
-                            .catch((e) => console.log(e));
-                          console.log(dataFetch);
-
-                          if (dataFetch)
-                            toast({
-                              title: "Ban success",
-                            });
-
-                          refresh();
-                        }}
-                      >
-                        YES
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              );
-            } else {
-              return (
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      UnBan
-                    </div>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogDescription>
-                        Are you sure you want unban this Kiot ?
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={async () => {
-                          const dataFetch = await axios
-                            .post(
-                              `${BASE_URL}kiots/unbanned/${id}`,
-                              {},
-                              {
-                                headers: {
-                                  Authorization: `Bearer ${data?.token}`,
-                                },
-                              }
-                            )
-                            .then((res) => res)
-                            .catch((e) => console.log(e));
-
-                          if (dataFetch)
-                            toast({
-                              title: "UnBun success",
-                            });
-
-                          refresh();
-                        }}
-                      >
-                        YES
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              );
-            }
-          }}
-        />
         <EditButton label="Detail" />
       </Datagrid>
     </List>
   );
 };
 
-export const ShowKiot = (props: any) => {
+export const ShowStores = (props: any) => {
   return (
     <Show>
       <TabbedShowLayout>
@@ -426,30 +301,6 @@ export const ShowKiot = (props: any) => {
                   <TextField source="phoneNumber" label="Full Name" />
                 </div>
               </div>{" "}
-            </div>
-          </ReferenceField>
-        </TabbedShowLayout.Tab>
-        <TabbedShowLayout.Tab label="Area info">
-          <ReferenceField source="idOfArea" reference="areas" link={false}>
-            <div className="grid grid-cols-2 gap-4 mb-16">
-              <div>
-                <div>Name</div>
-                <div className="px-4 py-2 my-2 border-2 border-gray-300 rounded-lg">
-                  <TextField source="name" label="Full Name" />
-                </div>
-              </div>
-              <div>
-                <div>Province</div>
-                <div className="px-4 py-2 my-2 border-2 border-gray-300 rounded-lg">
-                  <TextField source="provinceName" label="Full Name" />
-                </div>
-              </div>
-              <div>
-                <div>District</div>
-                <div className="px-4 py-2 my-2 border-2 border-gray-300 rounded-lg">
-                  <TextField source="districtName" label="Full Name" />
-                </div>
-              </div>
             </div>
           </ReferenceField>
         </TabbedShowLayout.Tab>
