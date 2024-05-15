@@ -23,7 +23,7 @@ const logout = async () => {
 
 const checkError = (error: any) => {
   const status = error.status;
-  if (status === 401) {
+  if (status === 401 || status === 403) {
     localStorage.removeItem("user");
     return Promise.reject();
   }

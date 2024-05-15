@@ -465,6 +465,34 @@ export const ShowOrdersKiot = (props: any) => {
             </div>
           </ReferenceField>
         </TabbedShowLayout.Tab>
+        <TabbedShowLayout.Tab label="transaction">
+          <ReferenceManyField
+            reference="transactions"
+            target="idOfOrder"
+            label="Transaction"
+          >
+            <Datagrid>
+              <TextField source="id" />
+              <TextField source="idOfUser" />
+              <NumberField source="amountMoney" />
+              <TextField source="type" />
+              <DateField source="createdAt" showTime />
+            </Datagrid>
+          </ReferenceManyField>
+          <ReferenceManyField
+            reference="transaction-shops"
+            target="idOfOrder"
+            label="Transaction Shops"
+          >
+            <Datagrid>
+              <TextField source="id" />
+              <TextField source="idOfShop" />
+              <NumberField source="amountMoney" />
+              <TextField source="type" />
+              <DateField source="createdAt" showTime />
+            </Datagrid>
+          </ReferenceManyField>
+        </TabbedShowLayout.Tab>
       </TabbedShowLayout>
     </Show>
   );

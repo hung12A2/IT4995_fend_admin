@@ -29,7 +29,30 @@ import {
 import { ListProducts, ShowProducts } from "@/module/Products/Products";
 import { ListOrder, ShowOrder } from "@/module/Orders/orders";
 import { ListOrdersKiot, ShowOrdersKiot } from "@/module/OrdersKiot/ordersKiot";
-import { ListUserTrangsaction } from "@/module/UserTransaction/userTransaction";
+import {
+  ListUserTrangsaction,
+  ShowTransaction,
+} from "@/module/UserTransaction/userTransaction";
+import {
+  ListShopTrangsaction,
+  ShowShopTransaction,
+} from "@/module/ShopTransaction/ShopTransaction";
+import {
+  ListReturnOrder,
+  ShowReturnOrder,
+} from "@/module/ReturnOrder/returnOrder";
+import PaidIcon from '@mui/icons-material/Paid';
+import { CustomDash } from "@/module/Dashboard/dashboard";
+import PersonIcon from '@mui/icons-material/Person';
+import ShopIcon from '@mui/icons-material/Shop';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import BadgeSharpIcon from '@mui/icons-material/BadgeSharp';
+import SupervisorAccountSharpIcon from '@mui/icons-material/SupervisorAccountSharp';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
 
 export default function Home() {
   return (
@@ -38,6 +61,7 @@ export default function Home() {
       authProvider={authProvider}
       dataProvider={dataProvider}
       layout={MainLayout}
+      dashboard={CustomDash}
     >
       <Resource
         name="areas"
@@ -52,6 +76,7 @@ export default function Home() {
       <Resource
         name="getAllUser"
         list={ListUser}
+        icon={PersonIcon}
         options={{
           label: "Users",
         }}
@@ -61,6 +86,7 @@ export default function Home() {
         name="stores"
         list={ListStores}
         edit={ShowStores}
+        icon={ShopIcon}
         options={{
           label: "Stores",
         }}
@@ -69,6 +95,7 @@ export default function Home() {
       <Resource
         name="request-create-shops"
         list={ListRequestShops}
+        icon={AddBusinessIcon}
         edit={ShowRequestShopsDetails}
         options={{
           label: "Request create",
@@ -78,6 +105,7 @@ export default function Home() {
       <Resource
         name="kiots"
         list={ListKiots}
+        icon={AddCardIcon}
         edit={ShowKiot}
         options={{
           label: "Kiots",
@@ -88,6 +116,7 @@ export default function Home() {
         name="employees"
         list={ListEmployee}
         edit={ShowEmployee}
+        icon={BadgeSharpIcon}
         options={{
           label: "Employees",
         }}
@@ -98,6 +127,7 @@ export default function Home() {
         list={ListAdmin}
         create={CreateAdmin}
         edit={EditAdmin}
+        icon={SupervisorAccountSharpIcon}
       />
 
       <Resource
@@ -105,6 +135,7 @@ export default function Home() {
         list={ListCategories}
         create={CreateCategories}
         edit={EditCategories}
+        icon={CategoryOutlinedIcon}
         options={{
           label: "Categories",
         }}
@@ -114,6 +145,7 @@ export default function Home() {
         name="products"
         list={ListProducts}
         edit={ShowProducts}
+        icon={ProductionQuantityLimitsOutlinedIcon}
         options={{ label: "Products" }}
       />
 
@@ -121,6 +153,7 @@ export default function Home() {
         name="request-create-products"
         list={ListRequestProducts}
         edit={ShowRequest}
+        icon={ProductionQuantityLimitsOutlinedIcon}
       />
 
       <Resource
@@ -128,6 +161,7 @@ export default function Home() {
         list={ListOrder}
         edit={ShowOrder}
         options={{ label: "Orders" }}
+        icon={ListAltIcon}
       />
 
       <Resource
@@ -135,9 +169,31 @@ export default function Home() {
         list={ListOrdersKiot}
         edit={ShowOrdersKiot}
         options={{ label: "OrdersKiot" }}
+        icon={ListAltIcon}
       />
 
-      <Resource name="transactions"  list={ListUserTrangsaction} options={{label: "User transaction"}}/> 
+      <Resource
+        name="transactions"
+        list={ListUserTrangsaction}
+        edit={ShowTransaction}
+        options={{ label: "User transaction" }}
+        icon={PaidIcon}
+        
+      />
+      <Resource
+        name="transaction-shops"
+        list={ListShopTrangsaction}
+        edit={ShowShopTransaction}
+        options={{ label: "Shop transaction" }}
+        icon={PaidIcon}
+      />
+
+      <Resource
+        name="return-orders"
+        list={ListReturnOrder}
+        edit={ShowReturnOrder}
+        icon={AssignmentReturnIcon}
+      />
 
       <CustomRoutes>
         <Route path="/profile" element={<Profile />} />

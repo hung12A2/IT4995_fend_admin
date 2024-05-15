@@ -284,7 +284,7 @@ export const ShowRequest = (props: any) => {
             <div className="">
               <div className="my-2">price</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                <RichTextField source="price" label="Shop name" />
+                <NumberField source="price"  label="Shop name" />
               </div>
             </div>
             <div className="">

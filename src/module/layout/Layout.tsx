@@ -5,6 +5,7 @@ import {
   UserMenu,
   useUserMenu,
   useRedirect,
+  Menu,
 } from "react-admin";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -53,6 +54,32 @@ const MyAppBar = (props: any) => {
   );
 };
 
+const MyMenu = (props: any) => {
+  return (
+    <Menu>
+      <Menu.DashboardItem />
+      <Menu.ResourceItem name="areas" />
+      <Menu.ResourceItem name="getAllUser" />
+      <Menu.ResourceItem name="stores" />
+      <Menu.ResourceItem name="request-create-shops" />
+      <Menu.ResourceItem name="kiots" />
+      <Menu.ResourceItem name="employees" />
+      <Menu.ResourceItem name="categories" />
+      <Menu.ResourceItem name="products" />
+      <Menu.ResourceItem name="request-create-products" />
+      <Menu.ResourceItem name="ordersAdmin" />
+      <Menu.ResourceItem name="ordersKiotAdmin" />
+      <Menu.ResourceItem name="transactions" />
+      <Menu.ResourceItem name="transaction-shops" />
+      <Menu.ResourceItem name="return-orders" />
+    </Menu>
+  );
+};
+
 export const MainLayout = ({ children }: any) => {
-  return <Layout appBar={MyAppBar}>{children}</Layout>;
+  return (
+    <Layout menu={MyMenu} appBar={MyAppBar}>
+      {children}
+    </Layout>
+  );
 };

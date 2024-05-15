@@ -82,7 +82,7 @@ export const dataProvider = {
     console.log("getList");
     const { filter, pagination, sort } = params;
 
-    if (pagination) {
+    if (pagination ) {
       const { page, perPage } = pagination;
       const limit = perPage;
       const skip = (page - 1) * perPage;
