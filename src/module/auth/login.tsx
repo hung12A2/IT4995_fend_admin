@@ -5,11 +5,13 @@ import { EmailField, PasswordField } from "../base/fieldBase";
 import { useRouter } from "next/navigation";
 import { useLogin } from "react-admin";
 import { useToast } from "@/components/ui/use-toast";
+import { useRedirect } from "react-admin";
 
 export const Login = () => {
   const { toast } = useToast();
   const login = useLogin();
   const router = useRouter();
+  const redirect = useRedirect();
 
   const formContext = useForm({});
 
@@ -78,28 +80,14 @@ export const Login = () => {
 
           <div className="text-center text-sm text-grey-dark mt-4">
             <a
-              className="no-underline border-b border-grey-dark text-md text-grey-dark text-blue-700 font-semibold"
-              href="#"
-              onClick={() => {}}
+              className="no-underline border-b border-grey-dark text-md text-grey-dark text-blue-700 font-semibold hover:cursor-grab"
+              onClick={() => {
+                router.push("/forgotPassowrd");
+              }}
             >
               Or Reset Password Here
             </a>
           </div>
-        </div>
-
-        <div className="text-green-500 hover:cursor-grab hover:text-green-600 mt-6 font-semibold hover">
-          Dont have an account ? &nbsp;
-          <a
-            className="no-underline border-b border-blue text-blue-500 font-semibold hover:text-blue-600"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              router.push("/auth/register");
-            }}
-          >
-            Create Account
-          </a>
-          .
         </div>
       </div>
     </div>

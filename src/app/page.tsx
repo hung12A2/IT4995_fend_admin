@@ -41,18 +41,18 @@ import {
   ListReturnOrder,
   ShowReturnOrder,
 } from "@/module/ReturnOrder/returnOrder";
-import PaidIcon from '@mui/icons-material/Paid';
+import PaidIcon from "@mui/icons-material/Paid";
 import { CustomDash } from "@/module/Dashboard/dashboard";
-import PersonIcon from '@mui/icons-material/Person';
-import ShopIcon from '@mui/icons-material/Shop';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-import AddCardIcon from '@mui/icons-material/AddCard';
-import BadgeSharpIcon from '@mui/icons-material/BadgeSharp';
-import SupervisorAccountSharpIcon from '@mui/icons-material/SupervisorAccountSharp';
-import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
-import ProductionQuantityLimitsOutlinedIcon from '@mui/icons-material/ProductionQuantityLimitsOutlined';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import AssignmentReturnIcon from '@mui/icons-material/AssignmentReturn';
+import PersonIcon from "@mui/icons-material/Person";
+import ShopIcon from "@mui/icons-material/Shop";
+import AddBusinessIcon from "@mui/icons-material/AddBusiness";
+import AddCardIcon from "@mui/icons-material/AddCard";
+import BadgeSharpIcon from "@mui/icons-material/BadgeSharp";
+import SupervisorAccountSharpIcon from "@mui/icons-material/SupervisorAccountSharp";
+import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
+import ProductionQuantityLimitsOutlinedIcon from "@mui/icons-material/ProductionQuantityLimitsOutlined";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 
 export default function Home() {
   return (
@@ -178,7 +178,6 @@ export default function Home() {
         edit={ShowTransaction}
         options={{ label: "User transaction" }}
         icon={PaidIcon}
-        
       />
       <Resource
         name="transaction-shops"
@@ -198,6 +197,9 @@ export default function Home() {
       <CustomRoutes>
         <Route path="/profile" element={<Profile />} />
       </CustomRoutes>
+
+      {/* <CustomRoutes noLayout={true}>
+      </CustomRoutes> */}
     </Admin>
   );
 }

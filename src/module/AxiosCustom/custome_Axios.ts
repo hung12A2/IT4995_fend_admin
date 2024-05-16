@@ -38,43 +38,43 @@ instance.interceptors.response.use(
       // authentication (token related issues)
       case 401: {
         //toast.error("Unauthorized the user.Please login... ");
-        return error.response.data;
+        return error.response;
       }
 
       // forbidden (permission related issues)
       case 403: {
         //toast.error("You don't have permission to access this resource...");
-        return error.response.data;
+        return error.response;
       }
 
       // bad request
       case 400: {
         //toast.error("Something wrong from server");
 
-        return error.response.data;
+        return error.response;
       }
 
       // not found
       case 404: {
         //toast.error("Not found... ");
 
-        return error.response.data;
+        return error.response;
       }
 
       // conflict
       case 409: {
-        return error.response.data;
+        return error.response;
       }
 
       // unprocessable
       case 422: {
-        return error.response.data;
+        return error.response;
       }
 
       // generic api error (server related) unexpected
       default: {
         //toast.error("Something wrong... ");
-        return error.response.data;
+        return error.response;
       }
     }
   }
