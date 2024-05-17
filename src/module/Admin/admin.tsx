@@ -261,6 +261,9 @@ export const CreateAdmin = (props: any) => {
             { id: "Users-Managment", name: "Users-Managment" },
             { id: "Kiots-Managment", name: "Kiots-Managment" },
             { id: "Shops-Managment", name: "Shops-Managment" },
+            { id: "Orders-Managment", name: "Orders-Managment" },
+            { id: "Transactions-Managment", name: "Transactions-Managment" },
+
           ]}
         />
       </SimpleForm>

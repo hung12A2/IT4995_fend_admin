@@ -59,6 +59,7 @@ const MyMenu = (props: any) => {
     <Menu>
       <Menu.DashboardItem />
       <Menu.ResourceItem name="areas" />
+      <Menu.ResourceItem name="admins" />
       <Menu.ResourceItem name="getAllUser" />
       <Menu.ResourceItem name="stores" />
       <Menu.ResourceItem name="request-create-shops" />

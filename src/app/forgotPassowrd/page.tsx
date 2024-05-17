@@ -2,9 +2,27 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
+import axios from "../../module/AxiosCustom/custome_Axios";
+import { EmailField, PasswordField } from "../../module/base/fieldBase";
+import { useForm, FormProvider } from "react-hook-form";
+import { useToast } from "@/components/ui/use-toast";
 
 const Forgetpass = () => {
   const router = useRouter();
+  const { toast } = useToast();
+  const formContext = useForm({});
+
+  const { handleSubmit } = formContext;
+
+  const onSubmit = async (data: any) => {
+    const { email } = data;
+    const dataFetch = await axios
+      .post("/forgotPassword/admin", { email })
+      .then((res) => res.data)
+      .catch((e) => console.log(e));
+
+    router.push("/sendSuccess");
+  };
 
   return (
     <>
@@ -14,23 +32,23 @@ const Forgetpass = () => {
             <h1 className="mb-8 text-3xl text-center font-semibold">
               Reset Password
             </h1>
-            <input
-              type="email"
-              className="block border border-grey-light w-full p-3 rounded mb-4"
-              name="email"
-              placeholder="email"
-              required
-            />
+            <FormProvider {...formContext}>
+              <div className="mb-4">
+                <EmailField
+                  name="email"
+                  label="email"
+                  placeholder="email"
+                  required={true}
+                />
+              </div>
 
-            <button
-              onClick={() => {
-                console.log("send email");
-              }}
-              type="submit"
-              className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none my-1"
-            >
-              Send email
-            </button>
+              <button
+                onClick={handleSubmit(onSubmit)}
+                className="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-dark focus:outline-none my-3"
+              >
+                Sign In
+              </button>
+            </FormProvider>
           </div>
 
           <div className="text-white mt-6">
