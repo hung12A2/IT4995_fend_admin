@@ -82,6 +82,8 @@ export const CustomDash = () => {
         },
       });
 
+      dataProducts = dataProducts ? dataProducts : []
+
       let dataChart: any = await axios
         .get("ordersAdmin/days/10")
         .then((res) => res)

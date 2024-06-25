@@ -55,151 +55,153 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import AssignmentReturnIcon from "@mui/icons-material/AssignmentReturn";
 
 export default function Home() {
-  return (
-    <Admin
-      loginPage={Login}
-      authProvider={authProvider}
-      dataProvider={dataProvider}
-      layout={MainLayout}
-      dashboard={CustomDash}
-    >
-      <Resource
-        name="areas"
-        list={ListAreas}
-        create={CreateAreas}
-        edit={EditArea}
-        icon={CameraRearRoundedIcon}
-        options={{
-          label: "Areas",
-        }}
-      />
-      <Resource
-        name="getAllUser"
-        list={ListUser}
-        icon={PersonIcon}
-        options={{
-          label: "Users",
-        }}
-      />
+  if (typeof document !== "undefined") {
+    return (
+      <Admin
+        loginPage={Login}
+        authProvider={authProvider}
+        dataProvider={dataProvider}
+        layout={MainLayout}
+        dashboard={CustomDash}
+      >
+        <Resource
+          name="areas"
+          list={ListAreas}
+          create={CreateAreas}
+          edit={EditArea}
+          icon={CameraRearRoundedIcon}
+          options={{
+            label: "Areas",
+          }}
+        />
+        <Resource
+          name="getAllUser"
+          list={ListUser}
+          icon={PersonIcon}
+          options={{
+            label: "Users",
+          }}
+        />
 
-      <Resource
-        name="stores"
-        list={ListStores}
-        edit={ShowStores}
-        icon={ShopIcon}
-        options={{
-          label: "Stores",
-        }}
-      />
+        <Resource
+          name="stores"
+          list={ListStores}
+          edit={ShowStores}
+          icon={ShopIcon}
+          options={{
+            label: "Stores",
+          }}
+        />
 
-      <Resource
-        name="request-create-shops"
-        list={ListRequestShops}
-        icon={AddBusinessIcon}
-        edit={ShowRequestShopsDetails}
-        options={{
-          label: "Request create",
-        }}
-      />
+        <Resource
+          name="request-create-shops"
+          list={ListRequestShops}
+          icon={AddBusinessIcon}
+          edit={ShowRequestShopsDetails}
+          options={{
+            label: "Request create",
+          }}
+        />
 
-      <Resource
-        name="kiots"
-        list={ListKiots}
-        icon={AddCardIcon}
-        edit={ShowKiot}
-        options={{
-          label: "Kiots",
-        }}
-      />
+        <Resource
+          name="kiots"
+          list={ListKiots}
+          icon={AddCardIcon}
+          edit={ShowKiot}
+          options={{
+            label: "Kiots",
+          }}
+        />
 
-      <Resource
-        name="employees"
-        list={ListEmployee}
-        edit={ShowEmployee}
-        icon={BadgeSharpIcon}
-        options={{
-          label: "Employees",
-        }}
-      />
+        <Resource
+          name="employees"
+          list={ListEmployee}
+          edit={ShowEmployee}
+          icon={BadgeSharpIcon}
+          options={{
+            label: "Employees",
+          }}
+        />
 
-      <Resource
-        name="admins"
-        list={ListAdmin}
-        create={CreateAdmin}
-        edit={EditAdmin}
-        icon={SupervisorAccountSharpIcon}
-      />
+        <Resource
+          name="admins"
+          list={ListAdmin}
+          create={CreateAdmin}
+          edit={EditAdmin}
+          icon={SupervisorAccountSharpIcon}
+        />
 
-      <Resource
-        name="categories"
-        list={ListCategories}
-        create={CreateCategories}
-        edit={EditCategories}
-        icon={CategoryOutlinedIcon}
-        options={{
-          label: "Categories",
-        }}
-      />
+        <Resource
+          name="categories"
+          list={ListCategories}
+          create={CreateCategories}
+          edit={EditCategories}
+          icon={CategoryOutlinedIcon}
+          options={{
+            label: "Categories",
+          }}
+        />
 
-      <Resource
-        name="products"
-        list={ListProducts}
-        edit={ShowProducts}
-        icon={ProductionQuantityLimitsOutlinedIcon}
-        options={{ label: "Products" }}
-      />
+        <Resource
+          name="products"
+          list={ListProducts}
+          edit={ShowProducts}
+          icon={ProductionQuantityLimitsOutlinedIcon}
+          options={{ label: "Products" }}
+        />
 
-      <Resource
-        name="request-create-products"
-        list={ListRequestProducts}
-        edit={ShowRequest}
-        icon={ProductionQuantityLimitsOutlinedIcon}
-      />
+        <Resource
+          name="request-create-products"
+          list={ListRequestProducts}
+          edit={ShowRequest}
+          icon={ProductionQuantityLimitsOutlinedIcon}
+        />
 
-      <Resource
-        name="ordersAdmin"
-        list={ListOrder}
-        edit={ShowOrder}
-        options={{ label: "Orders" }}
-        icon={ListAltIcon}
-      />
+        <Resource
+          name="ordersAdmin"
+          list={ListOrder}
+          edit={ShowOrder}
+          options={{ label: "Orders" }}
+          icon={ListAltIcon}
+        />
 
-      <Resource
-        name="ordersKiotAdmin"
-        list={ListOrdersKiot}
-        edit={ShowOrdersKiot}
-        options={{ label: "OrdersKiot" }}
-        icon={ListAltIcon}
-      />
+        <Resource
+          name="ordersKiotAdmin"
+          list={ListOrdersKiot}
+          edit={ShowOrdersKiot}
+          options={{ label: "OrdersKiot" }}
+          icon={ListAltIcon}
+        />
 
-      <Resource
-        name="transactions"
-        list={ListUserTrangsaction}
-        edit={ShowTransaction}
-        options={{ label: "User transaction" }}
-        icon={PaidIcon}
-      />
-      <Resource
-        name="transaction-shops"
-        list={ListShopTrangsaction}
-        edit={ShowShopTransaction}
-        options={{ label: "Shop transaction" }}
-        icon={PaidIcon}
-      />
+        <Resource
+          name="transactions"
+          list={ListUserTrangsaction}
+          edit={ShowTransaction}
+          options={{ label: "User transaction" }}
+          icon={PaidIcon}
+        />
+        <Resource
+          name="transaction-shops"
+          list={ListShopTrangsaction}
+          edit={ShowShopTransaction}
+          options={{ label: "Shop transaction" }}
+          icon={PaidIcon}
+        />
 
-      <Resource
-        name="return-orders"
-        list={ListReturnOrder}
-        edit={ShowReturnOrder}
-        icon={AssignmentReturnIcon}
-      />
+        <Resource
+          name="return-orders"
+          list={ListReturnOrder}
+          edit={ShowReturnOrder}
+          icon={AssignmentReturnIcon}
+        />
 
-      <CustomRoutes>
-        <Route path="/profile" element={<Profile />} />
-      </CustomRoutes>
+        <CustomRoutes>
+          <Route path="/profile" element={<Profile />} />
+        </CustomRoutes>
 
-      {/* <CustomRoutes noLayout={true}>
-      </CustomRoutes> */}
-    </Admin>
-  );
+        {/* <CustomRoutes noLayout={true}>
+        </CustomRoutes> */}
+      </Admin>
+    );
+  }
 }
