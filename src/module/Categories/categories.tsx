@@ -42,6 +42,7 @@ import { FileInput } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { imageConfigDefault } from "next/dist/shared/lib/image-config";
+import { checkPermission } from "@/lib/helper";
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -105,6 +106,20 @@ export const ListCategories = (props: any) => {
 
 export const CreateCategories = (props: any) => {
   const dataProvider = useDataProvider();
+
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("Categories-Managment", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
+
   return (
     <Create>
       <SimpleForm
@@ -149,6 +164,19 @@ export const EditCategories = (props: any) => {
   const id = params.id;
   const [categories, setCategories] = useState<any>({});
   const { toast } = useToast();
+
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("Categories-Managment", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
 
   return (
     <Edit>

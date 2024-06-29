@@ -114,16 +114,6 @@ export default function Home() {
         />
 
         <Resource
-          name="employees"
-          list={ListEmployee}
-          edit={ShowEmployee}
-          icon={BadgeSharpIcon}
-          options={{
-            label: "Employees",
-          }}
-        />
-
-        <Resource
           name="admins"
           list={ListAdmin}
           create={CreateAdmin}

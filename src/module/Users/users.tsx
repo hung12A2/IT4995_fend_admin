@@ -25,6 +25,7 @@ import {
 import axios from "axios";
 import { BASE_URL } from "@/api/constant";
 import { useToast } from "@/components/ui/use-toast";
+import { checkPermission } from "@/lib/helper";
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -53,6 +54,19 @@ export const ListUser = (props: any) => {
   const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
+
+
+  const user = data?.user;
+
+  if (checkPermission("Users-Managment", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
+
   return (
     <List>
       <FilterForm filters={postFilters}></FilterForm>

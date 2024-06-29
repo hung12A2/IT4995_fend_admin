@@ -34,6 +34,7 @@ import axios from "axios";
 import { BASE_URL } from "@/api/constant";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@mui/icons-material";
+import { checkPermission } from "@/lib/helper";
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -61,6 +62,8 @@ export const ListStores = (props: any) => {
   const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
+
+  const user = data?.user;
   return (
     <List>
       <FilterForm filters={postFilters}></FilterForm>
@@ -98,103 +101,107 @@ export const ListStores = (props: any) => {
           }}
         />
         <DateField source="createdAt" showTime />
-        <FunctionField
-          render={(record: any) => {
-            const { id, status } = record;
-            if (status === "active") {
-              return (
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      Ban
-                    </div>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogDescription>
-                        Are you sure you want ban this user ?
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={async () => {
-                          const dataFetch = await axios
-                            .post(
-                              `${BASE_URL}stores/banned/${id}`,
-                              {},
-                              {
-                                headers: {
-                                  Authorization: `Bearer ${data?.token}`,
-                                },
-                              }
-                            )
-                            .then((res) => res)
-                            .catch((e) => console.log(e));
-                          console.log(dataFetch);
 
-                          if (dataFetch)
-                            toast({
-                              title: "Ban success",
-                            });
+        {checkPermission("Shops-Managment", user?.permissions) == true && (
+          <FunctionField
+            render={(record: any) => {
+              const { id, status } = record;
+              if (status === "active") {
+                return (
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
+                        Ban
+                      </div>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogDescription>
+                          Are you sure you want ban this user ?
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={async () => {
+                            const dataFetch = await axios
+                              .post(
+                                `${BASE_URL}stores/banned/${id}`,
+                                {},
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${data?.token}`,
+                                  },
+                                }
+                              )
+                              .then((res) => res)
+                              .catch((e) => console.log(e));
+                            console.log(dataFetch);
 
-                          refresh();
-                        }}
-                      >
-                        YES
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              );
-            } else {
-              return (
-                <AlertDialog>
-                  <AlertDialogTrigger>
-                    <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      UnBan
-                    </div>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogDescription>
-                        Are you sure you want unban this user ?
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={async () => {
-                          const dataFetch = await axios
-                            .post(
-                              `${BASE_URL}stores/unbanned/${id}`,
-                              {},
-                              {
-                                headers: {
-                                  Authorization: `Bearer ${data?.token}`,
-                                },
-                              }
-                            )
-                            .then((res) => res)
-                            .catch((e) => console.log(e));
+                            if (dataFetch)
+                              toast({
+                                title: "Ban success",
+                              });
 
-                          if (dataFetch)
-                            toast({
-                              title: "UnBun success",
-                            });
+                            refresh();
+                          }}
+                        >
+                          YES
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                );
+              } else {
+                return (
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
+                        UnBan
+                      </div>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogDescription>
+                          Are you sure you want unban this user ?
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={async () => {
+                            const dataFetch = await axios
+                              .post(
+                                `${BASE_URL}stores/unbanned/${id}`,
+                                {},
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${data?.token}`,
+                                  },
+                                }
+                              )
+                              .then((res) => res)
+                              .catch((e) => console.log(e));
 
-                          refresh();
-                        }}
-                      >
-                        YES
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              );
-            }
-          }}
-        />
+                            if (dataFetch)
+                              toast({
+                                title: "UnBun success",
+                              });
+
+                            refresh();
+                          }}
+                        >
+                          YES
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                );
+              }
+            }}
+          />
+        )}
+
         <EditButton label="Detail" />
       </Datagrid>
     </List>
@@ -202,6 +209,18 @@ export const ListStores = (props: any) => {
 };
 
 export const ShowStores = (props: any) => {
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("Shops-Managment", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
   return (
     <Show>
       <TabbedShowLayout>

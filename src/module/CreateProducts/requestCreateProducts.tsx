@@ -37,6 +37,7 @@ import axios from "axios";
 import { BASE_URL } from "@/api/constant";
 import { useToast } from "@/components/ui/use-toast";
 import { Label } from "@mui/icons-material";
+import { checkPermission } from "@/lib/helper";
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -68,9 +69,21 @@ const postFilters = [
 ];
 
 export const ListRequestProducts = (props: any) => {
-  const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
+
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("Products-Managment", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
   return (
     <List>
       <FilterForm filters={postFilters}></FilterForm>
@@ -214,6 +227,18 @@ export const ListRequestProducts = (props: any) => {
 };
 
 export const ShowRequest = (props: any) => {
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("Products-Managment", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
   return (
     <Show>
       <TabbedShowLayout>
@@ -284,7 +309,7 @@ export const ShowRequest = (props: any) => {
             <div className="">
               <div className="my-2">price</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                <NumberField source="price"  label="Shop name" />
+                <NumberField source="price" label="Shop name" />
               </div>
             </div>
             <div className="">

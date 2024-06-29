@@ -15,7 +15,10 @@ import {
   SimpleForm,
   TextField,
   TextInput,
+  useGetIdentity,
 } from "react-admin";
+import { BASE_URL } from "@/api/constant";
+import { checkPermission } from "@/lib/helper";
 
 
 const postFilters = [
@@ -62,10 +65,18 @@ export const CreateAreas = (props: any) => {
   const [district, setDistrict] = useState([]);
   const [selectedProvince, setSelectedProvince] = useState("");
   const { toast } = useToast();
+
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+
+
+
   useEffect(() => {
     async function fetchData() {
       const data = await (
-        await fetch(`http://localhost:7070/location/province`, {
+        await fetch(`${BASE_URL}location/province`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -86,12 +97,14 @@ export const CreateAreas = (props: any) => {
     fetchData();
   }, []);
 
+  
+
   useEffect(() => {
     async function fetchData() {
       const selectedProvinceId = selectedProvince.split("-")[1];
       const data = await (
         await fetch(
-          `http://localhost:7070/location/province/${selectedProvinceId}`,
+          `${BASE_URL}location/province/${selectedProvinceId}`,
           {
             method: "GET",
             headers: {
@@ -113,6 +126,15 @@ export const CreateAreas = (props: any) => {
 
     fetchData();
   }, [selectedProvince]);
+
+  if (checkPermission("all", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
   return (
     <Create {...props}>
       <SimpleForm
@@ -169,6 +191,7 @@ export const EditArea = (props: any) => {
 
   const { toast } = useToast();
 
+
   useEffect(() => {
     async function fetchData() {
       const data = await dataProvider.getOne("areas", { id });
@@ -184,7 +207,7 @@ export const EditArea = (props: any) => {
     }
     async function fetchData2() {
       const data = await (
-        await fetch(`http://localhost:7070/location/province`, {
+        await fetch(`${BASE_URL}location/province`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -212,7 +235,7 @@ export const EditArea = (props: any) => {
       const selectedProvinceId = selectedProvince.split("-")[1];
       const data = await (
         await fetch(
-          `http://localhost:7070/location/province/${selectedProvinceId}`,
+          `${BASE_URL}location/province/${selectedProvinceId}`,
           {
             method: "GET",
             headers: {
@@ -234,6 +257,19 @@ export const EditArea = (props: any) => {
 
     fetchData();
   }, [selectedProvince]);
+
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("all", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
 
   return (
     <SimpleForm

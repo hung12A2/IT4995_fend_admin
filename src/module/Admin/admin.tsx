@@ -41,6 +41,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { set } from "react-hook-form";
+import { checkPermission } from "@/lib/helper";
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -59,9 +60,20 @@ const postFilters = [
 ];
 
 export const ListAdmin = (props: any) => {
-  const { data } = useGetIdentity();
   const { toast } = useToast();
   const refresh = useRefresh();
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+
+  if (checkPermission("all", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
   return (
     <List>
       <FilterForm filters={postFilters}></FilterForm>
@@ -226,6 +238,17 @@ export const CreateAdmin = (props: any) => {
   const { toast } = useToast();
   const dataProvider = useDataProvider();
 
+  const { data } = useGetIdentity();
+
+  const user = data?.user;
+  if (checkPermission("all", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
+
   return (
     <Create>
       <SimpleForm
@@ -254,16 +277,12 @@ export const CreateAdmin = (props: any) => {
           source="permissions"
           choices={[
             { id: "Products-Managment", name: "Products-Managment" },
-            {
-              id: "RequestCreateShops-Managment",
-              name: "RequestCreateShops-Managment",
-            },
+            { id: "Categories-Managment", name: "Categories-Managment" },
             { id: "Users-Managment", name: "Users-Managment" },
             { id: "Kiots-Managment", name: "Kiots-Managment" },
             { id: "Shops-Managment", name: "Shops-Managment" },
             { id: "Orders-Managment", name: "Orders-Managment" },
             { id: "Transactions-Managment", name: "Transactions-Managment" },
-
           ]}
         />
       </SimpleForm>
@@ -294,6 +313,14 @@ export const EditAdmin = (props: any) => {
 
     dataFetch();
   }, [id, dataProvider]);
+
+  if (checkPermission("all", user?.permissions) == false) {
+    return (
+      <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
+        Ban khong co quyen truy cap
+      </div>
+    );
+  }
 
   return (
     <>
@@ -468,13 +495,12 @@ export const EditAdmin = (props: any) => {
             source="permissions"
             choices={[
               { id: "Products-Managment", name: "Products-Managment" },
-              {
-                id: "RequestCreateShops-Managment",
-                name: "RequestCreateShops-Managment",
-              },
+              { id: "Categories-Managment", name: "Categories-Managment" },
               { id: "Users-Managment", name: "Users-Managment" },
               { id: "Kiots-Managment", name: "Kiots-Managment" },
               { id: "Shops-Managment", name: "Shops-Managment" },
+              { id: "Orders-Managment", name: "Orders-Managment" },
+              { id: "Transactions-Managment", name: "Transactions-Managment" },
             ]}
           />
         </div>
