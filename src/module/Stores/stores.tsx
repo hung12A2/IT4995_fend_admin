@@ -87,14 +87,14 @@ export const ListStores = (props: any) => {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
-                  <div>Active</div>
+                  <div>Hoạt động</div>
                 </div>
               );
             else {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                  <div>Banned</div>
+                  <div>Bị cấm</div>
                 </div>
               );
             }
@@ -111,17 +111,17 @@ export const ListStores = (props: any) => {
                   <AlertDialog>
                     <AlertDialogTrigger>
                       <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                        Ban
+                        Cấm
                       </div>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogDescription>
-                          Are you sure you want ban this user ?
+                          Bạn có chắc chắn muốn cấm cửa hàng này ?
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>Hủy</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={async () => {
                             const dataFetch = await axios
@@ -146,7 +146,7 @@ export const ListStores = (props: any) => {
                             refresh();
                           }}
                         >
-                          YES
+                          Đồng ý
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -157,17 +157,17 @@ export const ListStores = (props: any) => {
                   <AlertDialog>
                     <AlertDialogTrigger>
                       <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
-                        UnBan
+                        Bỏ cấm
                       </div>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogDescription>
-                          Are you sure you want unban this user ?
+                          Bạn có chắc chắn muốn bỏ cấm không ?
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>Hủy</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={async () => {
                             const dataFetch = await axios
@@ -191,7 +191,7 @@ export const ListStores = (props: any) => {
                             refresh();
                           }}
                         >
-                          YES
+                          Đồng ý
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -216,7 +216,7 @@ export const ShowStores = (props: any) => {
   if (checkPermission("Shops-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập vào hệ thống
       </div>
     );
   }

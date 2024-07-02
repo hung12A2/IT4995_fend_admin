@@ -130,7 +130,7 @@ export const CreateAreas = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+       Bạn không có quyền truy cập 
       </div>
     );
   }
@@ -146,14 +146,14 @@ export const CreateAreas = (props: any) => {
             console.log(dataReturn);
             if (dataReturn.code == 200) {
               toast({
-                title: "Create success",
-                description: `Create success at ${new Date().toLocaleString()}.`,
+                title: "Tạo thành công",
+                description: `Tạo thành công luc ${new Date().toLocaleString()}.`,
               });
             }
           } catch (error) {
             toast({
-              title: "Create failed",
-              description: `Create failed at ${new Date().toLocaleString()}.`,
+              title: "Tạo thất bại",
+              description: `Tạo thất bại luc ${new Date().toLocaleString()}.`,
             });
           }
         }}
@@ -265,7 +265,7 @@ export const EditArea = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập p
       </div>
     );
   }
@@ -292,14 +292,14 @@ export const EditArea = (props: any) => {
           ).data;
           if (dataReturn) {
             toast({
-              title: "Edit success",
-              description: `Update success at ${new Date().toLocaleString()}.`,
+              title: "Cập nhập thành công",
+              description: `Cập nhập thành công luc ${new Date().toLocaleString()}.`,
             });
           }
         } catch (error) {
           toast({
-            title: "Edit failed",
-            description: `Updated failed at ${new Date().toLocaleString()}.`,
+            title: "Cập nhập thất bạt ",
+            description: `Cập nhập thất bạt luc ${new Date().toLocaleString()}.`,
           });
         }
       }}

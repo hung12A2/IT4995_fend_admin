@@ -69,11 +69,10 @@ export const ListRequestShops = (props: any) => {
   if (checkPermission("Shops-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
-
 
   return (
     <List>
@@ -99,21 +98,21 @@ export const ListRequestShops = (props: any) => {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
-                  <div>accepted</div>
+                  <div>Chấp nhận </div>
                 </div>
               );
             else if (status === "pending") {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></div>
-                  <div>pending</div>
+                  <div>Xét duyệt</div>
                 </div>
               );
             } else {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                  <div>rejected</div>
+                  <div>Từ chối</div>
                 </div>
               );
             }
@@ -131,17 +130,17 @@ export const ListRequestShops = (props: any) => {
                   <AlertDialog>
                     <AlertDialogTrigger>
                       <div className="bg-green-300 hover:bg-green-400 hover:cursor-grab px-4 py-2 rounded-md">
-                        Accepted
+                        Đồng ý
                       </div>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogDescription>
-                          Are you sure you want accepted this request ?
+                          Bạn có chắc muốn đồng ý đơn tạo cửa hàng này không ?
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>Hủy</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={async () => {
                             const dataFetch = await axios
@@ -166,7 +165,7 @@ export const ListRequestShops = (props: any) => {
                             refresh();
                           }}
                         >
-                          YES
+                          Đồng ý
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -174,17 +173,17 @@ export const ListRequestShops = (props: any) => {
                   <AlertDialog>
                     <AlertDialogTrigger>
                       <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                        Rejected
+                        Từ chối
                       </div>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogDescription>
-                          Are you sure you want reject this request ?
+                          Bạn có chắc muốn từ chối đơn tạo cưả hàng này không ?
                         </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogCancel>Hủy</AlertDialogCancel>
                         <AlertDialogAction
                           onClick={async () => {
                             const dataFetch = await axios
@@ -209,7 +208,7 @@ export const ListRequestShops = (props: any) => {
                             refresh();
                           }}
                         >
-                          YES
+                          Chấp nhận
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -227,7 +226,6 @@ export const ListRequestShops = (props: any) => {
 };
 
 export const ShowRequestShopsDetails = (props: any) => {
-
   const { data } = useGetIdentity();
 
   const user = data?.user;
@@ -235,11 +233,11 @@ export const ShowRequestShopsDetails = (props: any) => {
   if (checkPermission("Shops-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
-  
+
   return (
     <Show>
       <TabbedShowLayout>

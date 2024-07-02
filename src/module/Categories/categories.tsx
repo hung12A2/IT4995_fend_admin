@@ -114,7 +114,7 @@ export const CreateCategories = (props: any) => {
   if (checkPermission("Categories-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+           Bạn không có quyền truy cập 
       </div>
     );
   }
@@ -140,7 +140,6 @@ export const CreateCategories = (props: any) => {
             .then((res) => res.data)
             .catch((e) => console.log(e));
 
-          console.log(res);
         }}
       >
         <TextInput source="cateName" />
@@ -172,7 +171,7 @@ export const EditCategories = (props: any) => {
   if (checkPermission("Categories-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+           Bạn không có quyền truy cập 
       </div>
     );
   }
@@ -202,11 +201,11 @@ export const EditCategories = (props: any) => {
 
           if (res.id) {
             toast({
-              title: "Update Category Success",
+              title: "Cập nhập danh mục hàng hóa thành công",
             });
           } else {
             toast({
-              title: "Update Category Fail",
+              title: "Cập nhập danh mục hàng hóa thất bại",
             });
           }
         }}

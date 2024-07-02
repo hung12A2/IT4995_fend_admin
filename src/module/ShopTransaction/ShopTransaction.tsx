@@ -70,7 +70,7 @@ export const ListShopTrangsaction = (props: any) => {
   if (checkPermission("Transactions-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
@@ -92,7 +92,6 @@ export const ListShopTrangsaction = (props: any) => {
 };
 
 export const ShowShopTransaction = (props: any) => {
-
   const { data } = useGetIdentity();
 
   const user = data?.user;
@@ -100,11 +99,11 @@ export const ShowShopTransaction = (props: any) => {
   if (checkPermission("Transactions-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
-  
+
   return (
     <Show>
       <TabbedShowLayout>

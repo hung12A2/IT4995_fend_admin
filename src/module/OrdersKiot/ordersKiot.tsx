@@ -79,11 +79,10 @@ export const ListOrdersKiot = (props: any) => {
   if (checkPermission("Orders-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy câp
       </div>
     );
   }
-
 
   return (
     <List>
@@ -105,7 +104,6 @@ export const ListOrdersKiot = (props: any) => {
 };
 
 export const ShowOrdersKiot = (props: any) => {
-
   const { data } = useGetIdentity();
 
   const user = data?.user;
@@ -113,11 +111,10 @@ export const ShowOrdersKiot = (props: any) => {
   if (checkPermission("Orders-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy câp{" "}
       </div>
     );
   }
-
 
   return (
     <Show>
@@ -327,7 +324,10 @@ export const ShowOrdersKiot = (props: any) => {
           </div>
         </TabbedShowLayout.Tab>
         <TabbedShowLayout.Tab className="mb-8" label="Product In Order">
-          <ReferenceManyField reference="products-in-order-kiots" target="idOfOrder">
+          <ReferenceManyField
+            reference="products-in-order-kiots"
+            target="idOfOrder"
+          >
             <Datagrid bulkActionButtons={false}>
               <ReferenceField
                 source="idOfProduct"

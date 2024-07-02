@@ -55,17 +55,15 @@ export const ListUser = (props: any) => {
   const { toast } = useToast();
   const refresh = useRefresh();
 
-
   const user = data?.user;
 
   if (checkPermission("Users-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập vào hệ thống
       </div>
     );
   }
-
 
   return (
     <List>
@@ -80,7 +78,7 @@ export const ListUser = (props: any) => {
           className="w-1/6"
           label="Avatar"
           render={(record: any) => {
-            const url = record?.avatar?.url
+            const url = record?.avatar?.url;
             // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
             if (url)
               return (
@@ -106,14 +104,14 @@ export const ListUser = (props: any) => {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
-                  <div>Active</div>
+                  <div>Hoạt động</div>
                 </div>
               );
             else {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                  <div>Banned</div>
+                  <div>Cấm</div>
                 </div>
               );
             }
@@ -128,17 +126,17 @@ export const ListUser = (props: any) => {
                 <AlertDialog>
                   <AlertDialogTrigger>
                     <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      Ban
+                      Cấm
                     </div>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogDescription>
-                        Are you sure you want ban this user ?
+                        Bạn có chắc chắn muốn cấm người dùng này không ?
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>Hủy</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
                           const dataFetch = await axios
@@ -162,7 +160,7 @@ export const ListUser = (props: any) => {
                           refresh();
                         }}
                       >
-                        YES
+                        Đồng ý
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
@@ -173,17 +171,17 @@ export const ListUser = (props: any) => {
                 <AlertDialog>
                   <AlertDialogTrigger>
                     <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      UnBan
+                      Bỏ cấm
                     </div>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogDescription>
-                        Are you sure you want unban this user ?
+                        Bạn có chắc chắn muốn bỏ cấm cho người dùng này ?
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>Hủy</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
                           const dataFetch = await axios
@@ -207,7 +205,7 @@ export const ListUser = (props: any) => {
                           refresh();
                         }}
                       >
-                        YES
+                        Đồng ý
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>

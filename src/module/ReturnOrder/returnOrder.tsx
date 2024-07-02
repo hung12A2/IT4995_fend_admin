@@ -108,7 +108,7 @@ export const ShowReturnOrder = (props: any) => {
   if (checkPermission("Orders-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập 
       </div>
     );
   }
@@ -185,9 +185,6 @@ export const ShowReturnOrder = (props: any) => {
               </div>
             </div>
           </div>
-        </TabbedShowLayout.Tab>
-        <TabbedShowLayout.Tab label="Order Info">
-          <div> Hello 1</div>
         </TabbedShowLayout.Tab>
       </TabbedShowLayout>
     </Show>

@@ -87,21 +87,21 @@ export const ListProducts = (props: any) => {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-green-400"></div>
-                  <div>active</div>
+                  <div>Hoạt động</div>
                 </div>
               );
             } else if (record.status == "pending") {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-yellow-400"></div>
-                  <div>Pending</div>
+                  <div>Xét duyệt</div>
                 </div>
               );
             } else {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-red-400"></div>
-                  <div>banned</div>
+                  <div>Ngừng bán</div>
                 </div>
               );
             }

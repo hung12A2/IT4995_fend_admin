@@ -91,7 +91,6 @@ export const ListUserTrangsaction = (props: any) => {
 };
 
 export const ShowTransaction = (props: any) => {
-
   const { data } = useGetIdentity();
 
   const user = data?.user;
@@ -99,7 +98,7 @@ export const ShowTransaction = (props: any) => {
   if (checkPermission("Transactions-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập vào hệ thống
       </div>
     );
   }
@@ -158,49 +157,49 @@ export const ShowTransaction = (props: any) => {
                     </div>
                   </ReferenceField>
                 );
-              } else return <ReferenceField
-              source="idOfOrder"
-              reference="ordersAdmin"
-            >
-              <div className="grid grid-cols-2 gap-x-4 gap-y-4">
-                <div className="">
-                  <div className="my-2">Id</div>
-                  <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                    <TextField source="id" label="Shop name" />
-                  </div>
-                </div>
-                <div className="">
-                  <div className="my-2">idOfShop</div>
-                  <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                    <TextField source="idOfShop" label="Shop name" />
-                  </div>
-                </div>
-                <div className="">
-                  <div className="my-2">idOfUser</div>
-                  <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                    <TextField source="idOfUser" label="Shop name" />
-                  </div>
-                </div>
-                <div className="">
-                  <div className="my-2">priceOfAll</div>
-                  <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                    <TextField source="priceOfAll" label="Shop name" />
-                  </div>
-                </div>
-                <div className="">
-                  <div className="my-2">codAmount</div>
-                  <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                    <TextField source="codAmount" label="Shop name" />
-                  </div>
-                </div>
-                <div className="">
-                  <div className="my-2">idOfUser</div>
-                  <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
-                    <TextField source="idOfUser" label="Shop name" />
-                  </div>
-                </div>
-              </div>
-            </ReferenceField>
+              } else
+                return (
+                  <ReferenceField source="idOfOrder" reference="ordersAdmin">
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-4">
+                      <div className="">
+                        <div className="my-2">Id</div>
+                        <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
+                          <TextField source="id" label="Shop name" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <div className="my-2">idOfShop</div>
+                        <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
+                          <TextField source="idOfShop" label="Shop name" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <div className="my-2">idOfUser</div>
+                        <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
+                          <TextField source="idOfUser" label="Shop name" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <div className="my-2">priceOfAll</div>
+                        <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
+                          <TextField source="priceOfAll" label="Shop name" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <div className="my-2">codAmount</div>
+                        <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
+                          <TextField source="codAmount" label="Shop name" />
+                        </div>
+                      </div>
+                      <div className="">
+                        <div className="my-2">idOfUser</div>
+                        <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
+                          <TextField source="idOfUser" label="Shop name" />
+                        </div>
+                      </div>
+                    </div>
+                  </ReferenceField>
+                );
             }}
           ></FunctionField>
         </TabbedShowLayout.Tab>

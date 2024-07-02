@@ -79,7 +79,7 @@ export const ListRequestProducts = (props: any) => {
   if (checkPermission("Products-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
@@ -100,21 +100,21 @@ export const ListRequestProducts = (props: any) => {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-green-400"></div>
-                  <div>Accepted</div>
+                  <div>Đồng ý</div>
                 </div>
               );
             } else if (record.status == "pending") {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-yellow-400"></div>
-                  <div>Pending</div>
+                  <div>Chờ duyệt</div>
                 </div>
               );
             } else {
               return (
                 <div className="flex flex-row justify-center items-center">
                   <div className="w-2 h-2 mr-2 rounded-full bg-red-400"></div>
-                  <div>Rejected</div>
+                  <div>Từ chối</div>
                 </div>
               );
             }
@@ -234,7 +234,7 @@ export const ShowRequest = (props: any) => {
   if (checkPermission("Products-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
@@ -271,79 +271,79 @@ export const ShowRequest = (props: any) => {
           />
           <div className="grid grid-cols-2 gap-x-4 gap-y-4 mb-12">
             <div className="">
-              <div className="my-2">idOfCategory</div>
+              <div className="my-2">Id của danh mục</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <TextField source="idOfCategory" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">idOfShop</div>
+              <div className="my-2">Id của shop</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <TextField source="idOfShop" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">OnlineProduct</div>
+              <div className="my-2">Là sản phẩm bán online</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <BooleanField source="isOnlineProduct" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">KiotProduct</div>
+              <div className="my-2">Là sản phẩm bán ở Kiot</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <BooleanField source="isKiotProduct" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">productDescription</div>
+              <div className="my-2">Mô tả sản phẩm</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <TextField source="productDescription" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">productDetails</div>
+              <div className="my-2">Mô tả chi tiết</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <RichTextField source="productDetails" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">price</div>
+              <div className="my-2">Giá</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <NumberField source="price" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">countInStock</div>
+              <div className="my-2">Số lượng trong kho</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <RichTextField source="countInStock" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">status</div>
+              <div className="my-2">Trạng thái</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <RichTextField source="status" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">cateName</div>
+              <div className="my-2">Tên danh mục</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <RichTextField source="cateName" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">weight</div>
+              <div className="my-2">Cân nặng</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <FunctionField
                   source="weight"
                   label="Shop name"
                   render={(record: any) => {
-                    return <div>{record.weight} kg</div>;
+                    return <div>{record.weight} gram</div>;
                   }}
                 />
               </div>
             </div>
             <div className="">
-              <div className="my-2">diemension</div>
+              <div className="my-2">Kích thước</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <FunctionField
                   source="diemension"
@@ -399,7 +399,9 @@ export const ShowRequest = (props: any) => {
                   // eslint-disable-next-line jsx-a11y/alt-text
                   <div className="flex flex-row gap-x-6">
                     <div className="flex flex-col w-1/3 justify-center">
-                      <div className="flex justify-center mb-4 ">Avatar</div>
+                      <div className="flex justify-center mb-4 ">
+                        Ảnh đại diện
+                      </div>
                       {url ? (
                         // eslint-disable-next-line jsx-a11y/alt-text
                         <img src={url} className="w-full"></img>
@@ -412,9 +414,7 @@ export const ShowRequest = (props: any) => {
                       )}
                     </div>
                     <div className="flex flex-col w-2/3 justify-center">
-                      <div className="flex justify-center mb-4">
-                        Cover Image
-                      </div>
+                      <div className="flex justify-center mb-4">Ảnh bìa</div>
                       {coverUrl ? (
                         // eslint-disable-next-line jsx-a11y/alt-text
                         <img src={coverUrl} className="w-full"></img>
@@ -432,69 +432,69 @@ export const ShowRequest = (props: any) => {
             />
             <div className="grid grid-cols-2 gap-x-4 gap-y-4">
               <div className="">
-                <div className="my-2">Shop Name</div>
+                <div className="my-2">Tên shop</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="name" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Shop Email</div>
+                <div className="my-2">Email</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="email" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Shop Phone</div>
+                <div className="my-2">Số điện thoại</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="phoneNumber" label="Shop name" />
                 </div>
               </div>
             </div>
             <div className="">
-              <div className="my-2">Pick up address</div>
+              <div className="my-2">Địa chỉ lấy hàng</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <TextField source="pickUpAddress" label="Shop name" />
               </div>
             </div>
             <div className="">
-              <div className="my-2">Return address</div>
+              <div className="my-2">Địa chỉ trả hàng</div>
               <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                 <TextField source="returnAddress" label="Shop name" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-4 mb-12">
               <div className="">
-                <div className="my-2">Pick up Province</div>
+                <div className="my-2">Tỉnh lấy hàng</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="pickUpProvinceName" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Return Province</div>
+                <div className="my-2">Tỉnh trả  hàng</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="returnProvinceName" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Pick up District</div>
+                <div className="my-2">Huyện lấy hàng</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="pickUpDistrictName" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Return District</div>
+                <div className="my-2">Huyện trả  hàng</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="returnDistrictName" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Pick up Ward</div>
+                <div className="my-2">Xã lấy hàng</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="pickUpWardName" label="Shop name" />
                 </div>
               </div>
               <div className="">
-                <div className="my-2">Return Ward</div>
+                <div className="my-2">Xã trả hàng</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="returnWardName" label="Shop name" />
                 </div>
@@ -531,7 +531,7 @@ export const ShowRequest = (props: any) => {
                 </div>
               </div>
               <div className="">
-                <div className="my-2">description</div>
+                <div className="my-2">Mô tả</div>
                 <div className="w-full  border-2 border-gray-200 px-4 py-2 rounded-lg">
                   <TextField source="description" />
                 </div>

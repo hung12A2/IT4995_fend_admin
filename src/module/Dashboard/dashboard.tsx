@@ -96,8 +96,6 @@ export const CustomDash = () => {
 
       setDataKiot(dataKiot);
 
-      console.log(dataChart);
-
       const listIDShop = dataProducts.map((item: any) => item.idOfShop);
       const ListShop: any =
         (await dataProvider
@@ -138,14 +136,14 @@ export const CustomDash = () => {
             </div>
 
             <div className="px-4 py-2 flex flex-col gap-y-2 text-lg ">
-              <div className="flex justify-end">New pending create shop</div>
+              <div className="flex justify-end">Đơn tạo cửa hàng mới</div>
               <div className="flex justify-end">
                 {listNewRequestShops?.length || 0}
               </div>
             </div>
           </div>
           <div className="w-full mt-4  border-2 border-gray-200 rounded-lg pb-6">
-            <div className="m-4">Pending request create shop</div>
+            <div className="m-4">Danh sach dơn tạo cửa hàng</div>
             <div className="mt-2 border-t-2 border-gray-100">
               {listNewRequestShops?.map((item: any) => {
                 return (
@@ -173,7 +171,7 @@ export const CustomDash = () => {
                       )}
 
                       <div className="flex flex-col ml-4 text-sm">
-                        <div className="">Created By:</div>
+                        <div className="">Tạo bởi:</div>
                         <div>{item.nameOfUser}</div>
                       </div>
                     </div>
@@ -201,7 +199,7 @@ export const CustomDash = () => {
 
             <div className="px-4 py-2 flex flex-col gap-y-2 text-lg ">
               <div className="flex justify-end">
-                New pending create products
+              Đơn tạo sản phẩm mới
               </div>
               <div className="flex justify-end">
                 {listNewProducts?.length || 0}
@@ -209,7 +207,7 @@ export const CustomDash = () => {
             </div>
           </div>
           <div className="w-full mt-4  border-2 border-gray-200 rounded-lg pb-6">
-            <div className="m-4">Pending request create shop</div>
+            <div className="m-4">Danh sách đơn tạo sản phẩm</div>
             <div className="mt-2 border-t-2 border-gray-100">
               {listNewProducts?.map((item: any) => {
                 return (
@@ -237,7 +235,7 @@ export const CustomDash = () => {
                       )}
 
                       <div className="flex flex-col ml-4 text-sm">
-                        <div className="">Created By:</div>
+                        <div className="">Tạo bởi :</div>
                         <div>{item.shopName}</div>
                       </div>
                     </div>
@@ -264,12 +262,12 @@ export const CustomDash = () => {
             </div>
 
             <div className="px-4 py-2 flex flex-col gap-y-2 text-lg ">
-              <div className="flex justify-end">New User</div>
+              <div className="flex justify-end">Người dùng mới</div>
               <div className="flex justify-end">{listNewUser?.length || 0}</div>
             </div>
           </div>
           <div className="w-full mt-4  border-2 border-gray-200 rounded-lg pb-6">
-            <div className="m-4">New Users</div>
+            <div className="m-4">Danh sách người dùng mới</div>
             <div className="mt-2 border-t-2 border-gray-100">
               {listNewUser?.map((item: any) => {
                 return (
@@ -324,14 +322,14 @@ export const CustomDash = () => {
             </div>
 
             <div className="px-4 py-2 flex flex-col gap-y-2 text-lg ">
-              <div className="flex justify-end">New Shop</div>
+              <div className="flex justify-end">Cửa hàng mới</div>
               <div className="flex justify-end">
                 {ListNewStores?.length || 0}
               </div>
             </div>
           </div>
           <div className="w-full mt-4  border-2 border-gray-200 rounded-lg pb-6">
-            <div className="m-4">New Shops</div>
+            <div className="m-4">Danh sách cửa hàng mới</div>
             <div className="mt-2 border-t-2 border-gray-100">
               {ListNewStores?.map((item: any) => {
                 return (
@@ -359,7 +357,7 @@ export const CustomDash = () => {
                       )}
 
                       <div className="flex flex-col ml-4 text-sm">
-                        <div className="">Shop Name:</div>
+                        <div className="">Tên cửa hàng:</div>
                         <div>{item.name}</div>
                       </div>
                     </div>

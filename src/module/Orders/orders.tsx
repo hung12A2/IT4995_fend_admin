@@ -80,11 +80,10 @@ export const ListOrder = (props: any) => {
   if (checkPermission("Orders-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy câp{" "}
       </div>
     );
   }
-
 
   return (
     <List>
@@ -106,7 +105,6 @@ export const ListOrder = (props: any) => {
 };
 
 export const ShowOrder = (props: any) => {
-
   const { data } = useGetIdentity();
 
   const user = data?.user;
@@ -114,11 +112,10 @@ export const ShowOrder = (props: any) => {
   if (checkPermission("Orders-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy câp
       </div>
     );
   }
-
 
   return (
     <Show>

@@ -69,7 +69,7 @@ export const ListAdmin = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập
       </div>
     );
   }
@@ -113,14 +113,14 @@ export const ListAdmin = (props: any) => {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-green-300 rounded-full mr-2"></div>
-                  <div>Active</div>
+                  <div>Hoạt động</div>
                 </div>
               );
             else {
               return (
                 <div className="flex flex-row items-center">
                   <div className="w-2 h-2 bg-red-400 rounded-full mr-2"></div>
-                  <div>Banned</div>
+                  <div>Cấm</div>
                 </div>
               );
             }
@@ -139,17 +139,17 @@ export const ListAdmin = (props: any) => {
                 <AlertDialog>
                   <AlertDialogTrigger>
                     <div className="bg-red-300 hover:bg-red-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      Ban
+                      Cấm
                     </div>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogDescription>
-                        Are you sure you want ban this user ?
+                        Bạn muốn cấm người quản lý này khỏi hệ thống ?
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>Hủy</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
                           const dataFetch = await axios
@@ -173,7 +173,7 @@ export const ListAdmin = (props: any) => {
                           refresh();
                         }}
                       >
-                        YES
+                        Chấp nhận
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
@@ -184,17 +184,17 @@ export const ListAdmin = (props: any) => {
                 <AlertDialog>
                   <AlertDialogTrigger>
                     <div className="bg-blue-300 hover:bg-blue-400 hover:cursor-grab px-4 py-2 rounded-md">
-                      UnBan
+                      Bỏ cấm
                     </div>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
                       <AlertDialogDescription>
-                        Are you sure you want unban this user ?
+                        Bạn có muốn bỏ cấm đối với người quản lý này không ?
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogCancel>Hủy</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
                           const dataFetch = await axios
@@ -218,7 +218,7 @@ export const ListAdmin = (props: any) => {
                           refresh();
                         }}
                       >
-                        YES
+                        Chấp nhận
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
@@ -244,7 +244,7 @@ export const CreateAdmin = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+       Bạn không có quyền truy cập 
       </div>
     );
   }
@@ -261,11 +261,11 @@ export const CreateAdmin = (props: any) => {
 
           if (dataFetch.email) {
             toast({
-              title: "Create success",
+              title: "Tạo tài khoản quản lý thành công",
             });
           } else {
             toast({
-              title: "Create fail",
+              title: "Tạo tài khoản quản lý thất bại",
             });
           }
         }}
@@ -317,7 +317,7 @@ export const EditAdmin = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Ban khong co quyen truy cap
+        Bạn không có quyền truy cập 
       </div>
     );
   }
@@ -335,7 +335,7 @@ export const EditAdmin = (props: any) => {
               // eslint-disable-next-line jsx-a11y/alt-text
               <div className="flex flex-row gap-x-6">
                 <div className="flex flex-col w-1/3 justify-center">
-                  <div className="flex justify-center mb-4 ">Avatar</div>
+                  <div className="flex justify-center mb-4 ">Ảnh đại diện</div>
                   {url ? (
                     // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
                     <img src={url} className="w-full"></img>
@@ -348,7 +348,7 @@ export const EditAdmin = (props: any) => {
                   )}
                 </div>
                 <div className="flex flex-col w-2/3 justify-center">
-                  <div className="flex justify-center mb-4">Cover Image</div>
+                  <div className="flex justify-center mb-4">Ảnh bìa</div>
                   {coverUrl ? (
                     // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
                     <img src={coverUrl} className="w-full"></img>
@@ -425,7 +425,7 @@ export const EditAdmin = (props: any) => {
                 <AlertDialogContent>
                   <AlertDialogHeader>
                     <AlertDialogDescription>
-                      Please input your password to show
+                    Nhập mật khẩu tài khoản của bạn để hiển thị
                       <Form
                         onSubmit={(data) => {
                           const yourPassword = data.yourPassword;
@@ -433,11 +433,11 @@ export const EditAdmin = (props: any) => {
                             setCheckedPassword(true);
                             setOpen(false);
                             toast({
-                              title: "Your password is correct",
+                              title: "Mật khẩu chính xác",
                             });
                           } else {
                             toast({
-                              title: "Your password is incorrect",
+                              title: "Mật khẩu sai",
                             });
                           }
                         }}
@@ -447,9 +447,9 @@ export const EditAdmin = (props: any) => {
                           source="yourPassword"
                         />
                         <AlertDialogFooter>
-                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogCancel>Hủy</AlertDialogCancel>
                           <AlertDialogAction>
-                            <Button>Yes</Button>
+                            <Button>Chấp nhận</Button>
                           </AlertDialogAction>
                         </AlertDialogFooter>
                       </Form>
@@ -478,11 +478,11 @@ export const EditAdmin = (props: any) => {
 
           if (dataFetch) {
             toast({
-              title: "Update success",
+              title: "Cập nhập thành công",
             });
           } else {
             toast({
-              title: "Update fail",
+              title: "Cập nhập thất bại",
             });
           }
         }}
