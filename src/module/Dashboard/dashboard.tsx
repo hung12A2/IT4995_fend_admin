@@ -65,7 +65,7 @@ export const CustomDash = () => {
         params: {
           filter: {
             where: {
-              status: "accepted",
+              status: "pending",
               createdAt: { gt: newDate },
             },
           },

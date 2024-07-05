@@ -22,9 +22,10 @@ export const Login = () => {
     console.log("email", email, "password", password);
     login({ email, password })
       .then((res) => {
-        toast({
-          title: "Login success",
-        });
+        if (res.token)
+          toast({
+            title: "Login success",
+          });
       })
       .catch((err) => {
         toast({

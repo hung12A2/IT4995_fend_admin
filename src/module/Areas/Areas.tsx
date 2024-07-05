@@ -17,9 +17,8 @@ import {
   TextInput,
   useGetIdentity,
 } from "react-admin";
-import { BASE_URL } from "@/api/constant";
+import axios from "../../module/AxiosCustom/custome_Axios";
 import { checkPermission } from "@/lib/helper";
-
 
 const postFilters = [
   <TextInput key={"id"} label="id" source="where.id.like" alwaysOn={true} />,
@@ -45,7 +44,7 @@ const postFilters = [
 
 export const ListAreas = (props: any) => {
   return (
-    <List >
+    <List>
       <FilterForm filters={postFilters}></FilterForm>
       <Datagrid>
         <TextField source="id" />
@@ -70,21 +69,16 @@ export const CreateAreas = (props: any) => {
 
   const user = data?.user;
 
-
-
-
   useEffect(() => {
     async function fetchData() {
-      const data = await (
-        await fetch(`${BASE_URL}location/province`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
+      const data = await axios
+        .post("/location/province")
+        .then((res) => res.data)
+        .catch((e) => console.log(e));
 
-      const returnData = await data.data.map((item: any) => {
+      console.log(data);
+
+      const returnData = await data.map((item: any) => {
         return {
           proviceWithId: `${item.provinceName}-${item.provinceId}`,
           province: item.provinceName,
@@ -97,22 +91,10 @@ export const CreateAreas = (props: any) => {
     fetchData();
   }, []);
 
-  
-
   useEffect(() => {
     async function fetchData() {
       const selectedProvinceId = selectedProvince.split("-")[1];
-      const data = await (
-        await fetch(
-          `${BASE_URL}location/province/${selectedProvinceId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-      ).json();
+      const data = await axios.post(`location/district/${selectedProvinceId}`);
 
       const returnData = await data.data.map((item: any) => {
         return {
@@ -130,7 +112,7 @@ export const CreateAreas = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-       Bạn không có quyền truy cập 
+        Bạn không có quyền truy cập
       </div>
     );
   }
@@ -191,7 +173,6 @@ export const EditArea = (props: any) => {
 
   const { toast } = useToast();
 
-
   useEffect(() => {
     async function fetchData() {
       const data = await dataProvider.getOne("areas", { id });
@@ -202,18 +183,11 @@ export const EditArea = (props: any) => {
         district: `${dataReturn.districtName}-${dataReturn.districtId}`,
       };
 
-      setAreaData({...dataReturn});
+      setAreaData({ ...dataReturn });
       setSelectedProvince(dataReturn.province);
     }
     async function fetchData2() {
-      const data = await (
-        await fetch(`${BASE_URL}location/province`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-      ).json();
+      const data = await  axios.post(`location/province`);
 
       const returnData = await data.data.map((item: any) => {
         return {
@@ -233,17 +207,7 @@ export const EditArea = (props: any) => {
   useEffect(() => {
     async function fetchData() {
       const selectedProvinceId = selectedProvince.split("-")[1];
-      const data = await (
-        await fetch(
-          `${BASE_URL}location/province/${selectedProvinceId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-      ).json();
+      const data = await axios.post(`location/district/${selectedProvinceId}`);
 
       const returnData = await data.data.map((item: any) => {
         return {
@@ -265,28 +229,26 @@ export const EditArea = (props: any) => {
   if (checkPermission("all", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-        Bạn không có quyền truy cập p
+        Bạn không có quyền truy cập 
       </div>
     );
   }
-
 
   return (
     <SimpleForm
       defaultValues={areaData}
       onSubmit={async (data) => {
-        
         try {
           data.id = id;
           data.provinceName = data.province.split("-")[0];
           data.provinceId = data.province.split("-")[1];
           data.districtName = data.district.split("-")[0];
           data.districtId = data.district.split("-")[1];
-          
-          data= {
+
+          data = {
             data,
-            id: data.id
-          }
+            id: data.id,
+          };
           const dataReturn: any = (
             await dataProvider.update("areas", { ...data })
           ).data;

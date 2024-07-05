@@ -237,7 +237,7 @@ export const ShowStores = (props: any) => {
                     const { url } = item;
                     return (
                       <img
-                        className="w-1/4"
+                        className="w-[300px] aspect-video"
                         src={url}
                         alt="img"
                         key={index}
@@ -260,7 +260,7 @@ export const ShowStores = (props: any) => {
                     const { url } = item;
                     return (
                       <img
-                        className="w-1/4"
+                        className="w-[300px] aspect-video"
                         src={url}
                         alt="img"
                         key={index}
@@ -282,29 +282,29 @@ export const ShowStores = (props: any) => {
               return (
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <div className="flex flex-row gap-x-6">
-                  <div className="flex flex-col w-1/3 justify-center">
+                  <div className="flex flex-col w-1/3 justify-center items-center">
                     <div className="flex justify-center mb-4 ">Avatar</div>
                     {url ? (
                       // eslint-disable-next-line jsx-a11y/alt-text
-                      <img src={url} className="w-full"></img>
+                      <img src={url} className="w-3/4 aspect-square"></img>
                     ) : (
                       // eslint-disable-next-line jsx-a11y/alt-text
                       <img
                         src="https://github.com/shadcn.png"
-                        className="w-full"
+                        className="w-3/4 aspect-square"
                       ></img>
                     )}
                   </div>
-                  <div className="flex flex-col w-2/3 justify-center">
+                  <div className="flex flex-col w-2/3 justify-center items-center">
                     <div className="flex justify-center mb-4">Cover Image</div>
                     {coverUrl ? (
                       // eslint-disable-next-line jsx-a11y/alt-text
-                      <img src={coverUrl} className="w-full"></img>
+                      <img src={coverUrl} className="w-3/4 aspect-[5/2]"></img>
                     ) : (
                       // eslint-disable-next-line jsx-a11y/alt-text
                       <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQtqB4g6GQ5QPHLlf1dduVTt7xy3gEnM_fB4NA1IZ2YQ&s"
-                        className="w-full"
+                        className="w-3/4 aspect-[5/2]"
                       ></img>
                     )}
                   </div>
@@ -392,32 +392,38 @@ export const ShowStores = (props: any) => {
                 const coverImageUrl = record?.coverImage?.url;
                 return (
                   <div className="grid grid-cols-3">
-                    <div className="col-span-1 flex flex-col justify-center">
+                    <div className="col-span-1 flex flex-col justify-center items-center">
                       <div className="flex justify-center mb-4">Avatar</div>
                       {
                         // eslint-disable-next-line jsx-a11y/alt-text
                         avatarUrl ? (
-                          <img src={avatarUrl} className="w-full" />
+                          <img
+                            src={avatarUrl}
+                            className="w-3/4 aspect-square"
+                          />
                         ) : (
                           <img
                             src={`https://github.com/shadcn.png`}
-                            className="w-full"
+                            className="w-3/4 aspect-square"
                           />
                         )
                       }
                     </div>
-                    <div className="col-span-2 flex justify-center flex-col">
+                    <div className="col-span-2 flex justify-center flex-col items-center">
                       <div className="flex justify-center mb-4">
                         Cover Image
                       </div>
                       {
                         // eslint-disable-next-line jsx-a11y/alt-text
                         coverImageUrl ? (
-                          <img src={coverImageUrl} className="w-full " />
+                          <img
+                            src={coverImageUrl}
+                            className="w-3/4 aspect-[5/2] "
+                          />
                         ) : (
                           <img
                             src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQtqB4g6GQ5QPHLlf1dduVTt7xy3gEnM_fB4NA1IZ2YQ&s`}
-                            className="w-full"
+                            className="w-3/4 aspect-[5/2]"
                           />
                         )
                       }

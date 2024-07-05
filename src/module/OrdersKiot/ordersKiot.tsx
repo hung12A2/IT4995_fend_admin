@@ -441,11 +441,14 @@ export const ShowOrdersKiot = (props: any) => {
                       {
                         // eslint-disable-next-line jsx-a11y/alt-text
                         avatarUrl ? (
-                          <img src={avatarUrl} className="w-1/2" />
+                          <img
+                            src={avatarUrl}
+                            className="w-3/4 aspect-square "
+                          />
                         ) : (
                           <img
                             src={`https://github.com/shadcn.png`}
-                            className="w-full"
+                            className="w-3/4 aspect-square"
                           />
                         )
                       }
@@ -457,11 +460,14 @@ export const ShowOrdersKiot = (props: any) => {
                       {
                         // eslint-disable-next-line jsx-a11y/alt-text
                         coverImageUrl ? (
-                          <img src={coverImageUrl} className="w-1/2 " />
+                          <img
+                            src={coverImageUrl}
+                            className="w-3/4 aspect-[5/2] "
+                          />
                         ) : (
                           <img
                             src={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQtqB4g6GQ5QPHLlf1dduVTt7xy3gEnM_fB4NA1IZ2YQ&s`}
-                            className="w-full"
+                            className="w-3/4 aspect-[5/2]"
                           />
                         )
                       }

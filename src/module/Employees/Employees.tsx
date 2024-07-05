@@ -243,16 +243,16 @@ export const ShowEmployee = (props: any) => {
                       ></img>
                     )}
                   </div>
-                  <div className="flex flex-col w-2/3 justify-center">
+                  <div className="flex flex-col w-2/3 justify-center items-center">
                     <div className="flex justify-center mb-4">Cover Image</div>
                     {coverUrl ? (
                       // eslint-disable-next-line jsx-a11y/alt-text
-                      <img src={coverUrl} className="w-full"></img>
+                      <img src={coverUrl} className="w-3/4 aspect-[5/2]"></img>
                     ) : (
                       // eslint-disable-next-line jsx-a11y/alt-text
                       <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQtqB4g6GQ5QPHLlf1dduVTt7xy3gEnM_fB4NA1IZ2YQ&s"
-                        className="w-full"
+                        className="w-3/4 aspect-[5/2]"
                       ></img>
                     )}
                   </div>

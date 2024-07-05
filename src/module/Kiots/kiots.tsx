@@ -217,7 +217,7 @@ export const ShowKiot = (props: any) => {
   if (checkPermission("Kiots-Managment", user?.permissions) == false) {
     return (
       <div className="w-full h-[50vh] flex flex-col items-center justify-center text-xl font-medium">
-       Bạn không có quyền truy cập 
+        Bạn không có quyền truy cập
       </div>
     );
   }
@@ -238,7 +238,7 @@ export const ShowKiot = (props: any) => {
                     const { url } = item;
                     return (
                       <img
-                        className="w-1/4"
+                        className="w-[300px] aspect-video"
                         src={url}
                         alt="img"
                         key={index}
@@ -261,7 +261,7 @@ export const ShowKiot = (props: any) => {
                     const { url } = item;
                     return (
                       <img
-                        className="w-1/4"
+                        className="w-[300px] aspect-video"
                         src={url}
                         alt="img"
                         key={index}
@@ -284,7 +284,9 @@ export const ShowKiot = (props: any) => {
                 // eslint-disable-next-line jsx-a11y/alt-text
                 <div className="flex flex-row gap-x-6">
                   <div className="flex flex-col w-1/3 justify-center">
-                    <div className="flex justify-center mb-4 ">Ảnh đại diện</div>
+                    <div className="flex justify-center mb-4 ">
+                      Ảnh đại diện
+                    </div>
                     {url ? (
                       // eslint-disable-next-line jsx-a11y/alt-text
                       <img src={url} className="w-full"></img>
@@ -394,7 +396,9 @@ export const ShowKiot = (props: any) => {
                 return (
                   <div className="grid grid-cols-3">
                     <div className="col-span-1 flex flex-col justify-center">
-                      <div className="flex justify-center mb-4">Ảnh đại diện</div>
+                      <div className="flex justify-center mb-4">
+                        Ảnh đại diện
+                      </div>
                       {
                         // eslint-disable-next-line jsx-a11y/alt-text
                         avatarUrl ? (
@@ -408,9 +412,7 @@ export const ShowKiot = (props: any) => {
                       }
                     </div>
                     <div className="col-span-2 flex justify-center flex-col">
-                      <div className="flex justify-center mb-4">
-                      Ảnh bìa
-                      </div>
+                      <div className="flex justify-center mb-4">Ảnh bìa</div>
                       {
                         // eslint-disable-next-line jsx-a11y/alt-text
                         coverImageUrl ? (

@@ -93,6 +93,7 @@ export const ListRequestProducts = (props: any) => {
         <TextField source="idOfCategory" />
         <TextField source="idOfShop" />
         <NumberField source="price" />
+        <DateField source="createdAt" showTime />
         <FunctionField
           source="status"
           render={(record: any) => {
